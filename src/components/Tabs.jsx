@@ -17,7 +17,7 @@ class Tabs extends React.Component {
 
     componentDidMount () {
         const {defaultActiveKey} = this.props;
-        if (window._xG.__hasValue(defaultActiveKey)) {
+        if (common.__hasValue(defaultActiveKey)) {
             this.setState({
                 uncontrolledTabKey: defaultActiveKey
             });
