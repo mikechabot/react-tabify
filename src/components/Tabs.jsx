@@ -2,7 +2,7 @@ import React from 'react';
 import Maybe from 'maybe-baby';
 import Flex from './common/Flex';
 import Tab from './Tab';
-import common from '../common/index';
+import common from '../common';
 
 const NOT_ALLOWED = {cursor: 'not-allowed'};
 const OVERFLOW_Y = {overflowY: 'auto'};
