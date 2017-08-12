@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = {
-    __clone: function (obj) {
+export default {
+    __clone (obj) {
         if (!obj) return;
         return JSON.parse(JSON.stringify(obj));
     },
-    __hasValue: function (val) {
+    __hasValue (val) {
         return val !== undefined && val !== null;
     },
     __hasChanged (o1, o2) {
