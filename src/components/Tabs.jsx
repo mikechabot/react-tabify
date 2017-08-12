@@ -1,6 +1,6 @@
 import React from 'react';
 import Maybe from 'maybe-baby';
-import Flex from './Flex';
+import Flex from './common/Flex';
 import Tab from './Tab';
 import common from './common';
 
