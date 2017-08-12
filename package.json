@@ -1,6 +1,6 @@
 {
   "name": "react-tabify",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Tabs component for ReactJS",
   "main": "index.js",
   "scripts": {
