@@ -1,9 +1,8 @@
 'use strict';
 
-const Tabs = require('./lib/components/Tabs');
-const Tab = require('./lib/components/Tab');
+const tabify = require('./lib');
 
 module.exports = {
-    Tabs: Tabs,
-    Tab : Tab
+    Tabs: tabify.Tabs,
+    Tab : tabify.Tab
 };
