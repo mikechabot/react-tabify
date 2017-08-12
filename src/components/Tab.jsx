@@ -1,5 +1,5 @@
 import React from 'react';
-import Flex from '../../container/common/Flex';
+import Flex from './common/Flex';
 
 function Tab ({
     id,
