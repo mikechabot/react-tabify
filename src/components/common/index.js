@@ -42,7 +42,7 @@ export const Flex = glamorous.div({
     props => {
         let styles = [];
         if (props.column) styles.push({ flexDirection: 'column' });
-        if (props.column) styles.push({ height: props.height });
+        if (props.height) styles.push({ height: props.height });
         if (props.width) styles.push({ width: props.width });
         if (props.style) styles.push(props.style);
         return styles;
