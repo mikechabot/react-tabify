@@ -1,1 +1,3 @@
-export { default as ReactTabify } from './components';
+import ReactTabify from './components';
+
+export default ReactTabify;
