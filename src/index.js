@@ -1,3 +1,1 @@
-import { Tabs, Tab } from './components';
-
-export default { Tabs, Tab };
+export { Tabs, Tab } from './components';
