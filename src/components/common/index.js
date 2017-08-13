@@ -15,7 +15,9 @@ const BASE_LINK = {
 export const UL = glamorous.ul({
     ...BASE_UL,
     ...{
+        display     : 'inline-block',
         width       : '100%',
+        height      : '2.5rem',
         borderBottom: '1px solid #d8dde6'
     }
 });
@@ -37,14 +39,16 @@ export const StackedUL = glamorous.ul({
     }
 );
 
-export const Flex = glamorous.div({
-    display: 'flex'
-},
+export const Flex = glamorous.div(
+    {
+        display: 'flex'
+    },
     props => {
         let styles = [];
         if (props.column) styles.push({ flexDirection: 'column' });
         if (props.height) styles.push({ height: props.height });
         if (props.width) styles.push({ width: props.width });
+        if (props.scroll) styles.push({ overflowY: 'auto' });
         if (props.style) styles.push(props.style);
         return styles;
     }
@@ -81,7 +85,7 @@ export const Link = glamorous.a({
 );
 
 export const LI = glamorous.li({
-    display: 'inline'
+    display: 'inline-block'
 });
 
 export const StackedLI = glamorous.li({
