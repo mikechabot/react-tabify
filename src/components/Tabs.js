@@ -44,9 +44,9 @@ class Tabs extends React.Component {
                 <div>
                     {this._renderTabLinks(tabs)}
                 </div>
-                <div>
+                <Flex scroll={true}>
                     {this._renderTabContent(tabs)}
-                </div>
+                </Flex>
             </Flex>
         );
     }
