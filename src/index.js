@@ -1,3 +1,3 @@
-import ReactTabify from './components';
+import { Tabs, Tab } from './components';
 
-export default ReactTabify;
+export default { Tabs, Tab };
