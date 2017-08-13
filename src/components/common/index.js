@@ -25,6 +25,7 @@ export const StackedUL = glamorous.ul({
     ...{
         minWidth   : 200,
         width      : '100%',
+        height     : '100%',
         borderRight: '1px solid #d8dde6'
     }},
     props => {
