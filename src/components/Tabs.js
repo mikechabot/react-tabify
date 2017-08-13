@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tab from './Tab';
-import util from '../common/util';
+import common from '../common';
 
 import {
     LI, StackedLI,
     UL, StackedUL,
     Link, StackedLink,
     Flex
-} from '../common/glamorized-elements';
+} from './common/index';
 
 class Tabs extends React.Component {
     constructor (props) {
@@ -20,7 +20,7 @@ class Tabs extends React.Component {
 
     componentDidMount () {
         const {defaultActiveKey} = this.props;
-        if (util.__hasValue(defaultActiveKey)) {
+        if (common.__hasValue(defaultActiveKey)) {
             this.setState({
                 uncontrolledActiveKey: defaultActiveKey
             });
@@ -95,7 +95,7 @@ class Tabs extends React.Component {
     }
 
     _getActiveKey () {
-        return util.__hasValue(this.props.activeKey)
+        return common.__hasValue(this.props.activeKey)
             ? this.props.activeKey
             : this.state.uncontrolledActiveKey;
     }
@@ -179,7 +179,7 @@ function __detectControlledUncontrolledPropMismatches (activeKey, defaultActiveK
 }
 
 function __hasValues (...values) {
-    return values.every(value => util.__hasValue(value));
+    return values.every(value => common.__hasValue(value));
 }
 
 Tabs.propTypes = {

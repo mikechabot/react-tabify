@@ -3,14 +3,14 @@ import glamorous from 'glamorous';
 export const Flex = glamorous.div({
     display: 'flex'
 },
-  props => {
-      let styles = [];
-      if (props.column) styles.push({ flexDirection: 'column' });
-      if (props.height) styles.push({ height: props.height });
-      if (props.width) styles.push({ width: props.width });
-      if (props.scroll) styles.push({ overflowY: 'auto' });
-      return styles;
-  }
+    props => {
+        let styles = [];
+        if (props.column) styles.push({ flexDirection: 'column' });
+        if (props.column) styles.push({ height: props.height });
+        if (props.width) styles.push({ width: props.width });
+        if (props.style) styles.push(props.style);
+        return styles;
+    }
 );
 
 export const UL = glamorous.ul({

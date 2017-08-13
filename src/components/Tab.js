@@ -1,19 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex } from '../common/glamorized-elements';
+import { Flex } from './common';
 
 function Tab ({
     id,
+    style,
     stacked,
     children
 }) {
     return (
         <Flex
-            scroll={true}
             id={id}
+            style={{
+                ...stacked ? {paddingLeft: 10} : {paddingTop: 10},
+                ...style
+            }}
             stacked={stacked}
             height="100%">
-            {children}
+            { children }
         </Flex>
     );
 }
