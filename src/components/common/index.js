@@ -24,9 +24,8 @@ const BASE_UL = {
 };
 
 const BASE_LINK = {
-    fontSize: '.8125rem',
-    cursor  : 'pointer',
-    display : 'inline-block'
+    cursor : 'pointer',
+    display: 'inline-block'
 };
 
 export const UL = glamorous.ul({
