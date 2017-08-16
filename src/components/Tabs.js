@@ -7,8 +7,9 @@ import {
     LI, StackedLI,
     UL, StackedUL,
     Link, StackedLink,
-    Flex
+    Flex, theme
 } from './common/index';
+import {ThemeProvider} from 'glamorous';
 
 class Tabs extends React.Component {
     constructor (props) {
@@ -40,14 +41,16 @@ class Tabs extends React.Component {
         );
 
         return (
-            <Flex id={id} height="100%" width="100%" column={!stacked}>
-                <div>
-                    {this._renderTabLinks(tabs)}
-                </div>
-                <Flex scroll={true}>
-                    {this._renderTabContent(tabs)}
+            <ThemeProvider theme={this.props.theme || theme}>
+                <Flex id={id} height="100%" width="100%" column={!stacked}>
+                    <div>
+                        {this._renderTabLinks(tabs)}
+                    </div>
+                    <Flex scroll={true}>
+                        {this._renderTabContent(tabs)}
+                    </Flex>
                 </Flex>
-            </Flex>
+            </ThemeProvider>
         );
     }
 

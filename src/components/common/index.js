@@ -1,5 +1,22 @@
 import glamorous from 'glamorous';
 
+const PRIMARY_BLUE = '#0070d2';
+const PRIMARY_GRAY = '#f4f6f9';
+const SECONDARY_BLUE = '#f0f8fc';
+const BORDER = '#d8dde6';
+
+export const theme = {
+    main: {
+        color: PRIMARY_BLUE,
+        hover: {
+            backgroundColor: PRIMARY_GRAY
+        },
+        active: {
+            backgroundColor: SECONDARY_BLUE
+        }
+    }
+};
+
 const BASE_UL = {
     margin   : 0,
     padding  : 0,
@@ -18,7 +35,7 @@ export const UL = glamorous.ul({
         display     : 'inline-block',
         width       : '100%',
         height      : '2.5rem',
-        borderBottom: '1px solid #d8dde6'
+        borderBottom: `1px solid ${BORDER}`
     }
 });
 
@@ -28,7 +45,7 @@ export const StackedUL = glamorous.ul({
         minWidth   : 200,
         width      : '100%',
         height     : '100%',
-        borderRight: '1px solid #d8dde6'
+        borderRight: `1px solid ${BORDER}`
     }},
     props => {
         let styles = [];
@@ -63,8 +80,13 @@ export const StackedLink = glamorous.a({
             textDecoration: 'underline'
         }
     }},
-    ({ active }) => {
-        if (active) return [{ borderLeft: '4px solid #0070d2', color: '#0070d2' }];
+    ({ active, theme }) => {
+        if (active) {
+            return [{
+                borderLeft: `4px solid ${theme.main.color}`,
+                color     : theme.main.color
+            }];
+        }
     }
 );
 
@@ -73,14 +95,17 @@ export const Link = glamorous.a({
     ...{
         height    : '2.5rem',
         lineHeight: '2.5rem',
-        padding   : '0 .75rem',
-        ':hover'  : {
-            color       : '#0070d2',
-            borderBottom: '2px solid #0070d2'
-        }
+        padding   : '0 .75rem'
     }},
-    ({ active }) => {
-        if (active) return [{ borderBottom: '2px solid #0070d2' }];
+    ({ active, theme }) => {
+        const styles = [{
+            ':hover': {
+                color       : theme.main.color,
+                borderBottom: `2px solid ${theme.main.color}`
+            }
+        }];
+        if (active) styles.push({ borderBottom: `2px solid ${theme.main.color}` });
+        return styles;
     }
 );
 
@@ -89,13 +114,15 @@ export const LI = glamorous.li({
 });
 
 export const StackedLI = glamorous.li({
-    cursor  : 'pointer',
-    ':hover': {
-        backgroundColor: '#f4f6f9'
-    }},
-    ({ active }) => {
-        if (active) {
-            return [{ width: '100%', backgroundColor: '#f0f8fc' }];
-        }
+    cursor: 'pointer'
+},
+    ({ active, theme }) => {
+        const styles = [{
+            ':hover': {
+                backgroundColor: theme.main.hover.backgroundColor
+            }
+        }];
+        if (active) styles.push({ width: '100%', backgroundColor: theme.main.active.backgroundColor });
+        return styles;
     }
 );
