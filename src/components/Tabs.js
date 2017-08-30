@@ -40,8 +40,13 @@ class Tabs extends React.Component {
             this.props.onSelect
         );
 
+        const tabsTheme = {
+            ...theme,
+            ...this.props.theme
+        };
+
         return (
-            <ThemeProvider theme={this.props.theme || theme}>
+            <ThemeProvider theme={tabsTheme}>
                 <Flex id={id} height="100%" width="100%" column={!stacked}>
                     <div>
                         {this._renderTabLinks(tabs)}
@@ -85,16 +90,6 @@ class Tabs extends React.Component {
                 return React.cloneElement(tab, {stacked: this._isStacked(), key});
             }
         });
-    }
-
-    _maybeRenderHorizontalControls (controlsHorizontal) {
-        if (controlsHorizontal) {
-            return (
-                <Flex>
-                    {controlsHorizontal}
-                </Flex>
-            );
-        }
     }
 
     _getActiveKey () {
