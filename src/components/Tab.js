@@ -25,7 +25,7 @@ function Tab ({
 
 Tab.propTypes = {
     id      : PropTypes.string,
-    label   : PropTypes.string,
+    label   : PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
     children: PropTypes.node,
     style   : PropTypes.object,
     show    : PropTypes.bool,
