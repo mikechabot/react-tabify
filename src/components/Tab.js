@@ -22,7 +22,7 @@ function Tab ({
 
 Tab.propTypes = {
     id      : PropTypes.string,
-    label   : PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+    label   : PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]).isRequired,
     children: PropTypes.node,
     style   : PropTypes.object,
     show    : PropTypes.bool,
