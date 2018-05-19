@@ -11,10 +11,7 @@ function Tab ({
     return (
         <Flex
             id={id}
-            style={{
-                ...stacked ? {paddingLeft: 10} : {paddingTop: 10},
-                ...style
-            }}
+            style={style}
             stacked={stacked}
             height="100%"
             width="100%">
