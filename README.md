@@ -54,7 +54,8 @@ Yarn or npm:
         Third Content
       </Tab>
     </Tabs>
-    
+
+
 **Vertical**: Just pass the `stacked` prop to `Tabs`
 
 [![Edit n4yxz04250](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n4yxz04250)
