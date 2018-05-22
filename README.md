@@ -49,8 +49,6 @@ export default () => (
 
 ### <Tabs />
 
-By default, the `<Tabs />` component is uncontrolled, however you can optionally pass a `defaultActiveKey`, which corresponds to the `eventKey` of a particular `<Tab />`, and the inital tab set will be set on render. 
-
 | Name               | Type                 | Default             | Description   | 
 | ------------------ |----------------------| --------------------|------------------------------|
 | `id`               | `string`             | `__react-tabify__`  | Id of the `<Tabs />` component |
@@ -60,5 +58,8 @@ By default, the `<Tabs />` component is uncontrolled, however you can optionally
 | `onSelect`         | `func`               |                     | Callback fired when a `<Tab />` is selected |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |
 | `children`         | `node`               |                     | `<Tab />` components  |
+
+
+By default, the `<Tabs />` component is uncontrolled, however you can optionally pass a `defaultActiveKey`, which corresponds to the `eventKey` of a particular `<Tab />`, and the inital tab set will be set on render. 
 
 ### <Tab />
