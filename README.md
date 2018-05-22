@@ -14,7 +14,7 @@ A dead simple tab component for ReactJS.
 - [Installation](#installation)
 - [Basic Example](#basic-example)
 - [Components](#components)
-- [Controlled Vs Uncontrolled Mode](#controlled-vs-uncontrolled-mode)
+- [Controlled vs Uncontrolled Mode](#controlled-vs-uncontrolled-mode)
 
 
 
@@ -66,7 +66,7 @@ export default () => (
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |  
 | `children`         | `node`               |                     | Any abritary React node                                 |
 
-## <a name="react-tabify#controlled-vs-uncontrolled-mode">Controlled Vs Uncontrolled Mode</a>
+## <a name="react-tabify#controlled-vs-uncontrolled-mode">Controlled vs Uncontrolled Mode</a>
 
 ### Uncontrolled Mode
 
