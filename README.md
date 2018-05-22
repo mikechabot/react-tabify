@@ -15,7 +15,7 @@ A dead simple tab component for ReactJS.
 - [Basic Example](#basic-example)
 - [Components](#components)
 - [Controlled vs Uncontrolled Mode](#controlled-vs-uncontrolled-mode)
-
+- [Other Examples](#other-examples)
 
 
 ## <a name="react-tabify#installation">Installation</a>
@@ -75,11 +75,13 @@ By default, the `<Tabs />` component is uncontrolled, and will display the first
 If `<Tab />` components are not passed an `eventKey`, they will default to their order index. In the example below, we're defaulting `<Tabs />` to display "Tab 3" since it sits at index `2`.
 
 ```js
-<Tabs defaultActiveKey={2}>
-  <Tab label="Tab 1">First Content</Tab>
-  <Tab label="Tab 2">Secont Content</Tab>
-  <Tab label="Tab 3">Third Content</Tab>
-</Tabs>
+export default () => (
+  <Tabs defaultActiveKey={2}>
+    <Tab label="Tab 1">First Content</Tab>
+    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 3">Third Content</Tab>
+  </Tabs>
+);
 ```
 [![Edit k9zlwno4zv](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k9zlwno4zv)
 
@@ -117,3 +119,54 @@ class App extends React.Component {
 ```
 
 [![Edit 30zw8qz25p](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/30zw8qz25p)
+
+## <a name="react-tabify#other-exampels">Other Examples</a>
+
+### Stacked
+
+Add the `stacked` prop to render the tabs vertically.
+
+```js
+export default () => (
+  <Tabs stacked>
+    <Tab label="Tab 1">First Content</Tab>
+    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 3">Third Content</Tab>
+  </Tabs>
+);
+```
+[![Edit w2wzlnqyw](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w2wzlnqyw)
+
+### Nested
+
+Easily nest tabs to create a section/subsection layout
+
+```js
+export default () => (
+  <Tabs stacked>
+    <Tab label="Tab 1">
+      <Tabs>
+        <Tab label="Subtab 1.1">Tab 1 Content 1</Tab>
+        <Tab label="Subtab 1.2">Tab 1 Content 2</Tab>
+        <Tab label="Subtab 1.3">Tab 1 Content 3</Tab>
+      </Tabs>
+    </Tab>
+    <Tab label="Tab 2">
+      <Tabs>
+        <Tab label="Subtab 2.1">Tab 2 Content 1</Tab>
+        <Tab label="Subtab 2.2">Tab 2 Content 2</Tab>
+        <Tab label="Subtab 2.3">Tab 2 Content 3</Tab>
+      </Tabs>
+      </Tab>
+    <Tab label="Tab 3">
+      <Tabs>
+        <Tab label="Subtab 3.1">Tab 3 Content 1</Tab>
+        <Tab label="Subtab 3.2">Tab 3 Content 2</Tab>
+        <Tab label="Subtab 3.3">Tab 3 Content 3</Tab>
+      </Tabs>
+    </Tab>
+  </Tabs>
+);
+```
+
+[![Edit 2pvlwjzp60](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2pvlwjzp60)
