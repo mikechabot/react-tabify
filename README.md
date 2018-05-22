@@ -18,6 +18,7 @@ A dead simple tab component for ReactJS.
 - [Other Examples](#other-examples)
   - [Stacked](#stacked)
   - [Nested](#nested)
+  - [Sticky](#sticky)
   - [Container Overflow](#container-overflow)
   - [Hiding Tabs](#hiding-tabs)
 - [Color Theme](#color-theme)
@@ -57,11 +58,12 @@ export default () => (
 
 | Name               | Type                 | Default             | Description                                             | 
 | ------------------ |----------------------| --------------------|---------------------------------------------------------|
-| `id`               | `string`             | `__react-tabify__`  | Id of the `<Tabs />` component                          |
+| `id`               | `string`             | `__tabify__`        | Id of the `<Tabs />` component                          |
 | `defaultActiveKey` | `string` / `number`  | `0`                 | `eventKey` of the initial `<Tab />` to render           |
 | `activeKey`        | `string` / `number`  |                     | `eventKey` of the current `<Tab />`                     |
 | `theme  `          | `object`             |                     | Optional color theme                                    |
 | `stacked`          | `bool`               | `false`             | Whether to display `<Tabs />` vertically                |
+| `sticky`           | `bool`               | `false`             | Enable sticky tabs
 | `onSelect`         | `func`               |                     | Callback fired when a `<Tab />` is selected             |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |
 | `children`         | `node`               |                     | `<Tab />` components                                    |
@@ -154,6 +156,25 @@ export default () => (
 );
 ```
 [![Edit p5y4mpxowq](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/p5y4mpxowq)
+
+----
+
+### <a name="react-tabify#sticky">Sticky</a>
+
+If `<Tabs />` is uncontrolled, pass `sticky` to "remember" the last active `<Tab />` between page refreshes. When `sticky` is enabled, you must pass you own `id` to `<Tabs />`. This will be used within `LocalStorage` to distinguish between multiple `<Tabs />` instances.
+
+> `LocalStorage` must be enabled in the browser.
+
+```js
+export default () => (
+  <Tabs sticky>
+    <Tab label="Tab 1">First Content</Tab>
+    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 3">Third Content</Tab>
+  </Tabs>
+);
+```
+[![Edit ovqynq18k9](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ovqynq18k9)
 
 ----
 
