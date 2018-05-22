@@ -1,35 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'glamorous';
+
 import Tab from './Tab';
-import common from '../common';
 
 import {
-    LI, StackedLI,
-    UL, StackedUL,
-    Link, StackedLink,
-    Flex, theme
-} from './glamorous/index';
-import {ThemeProvider} from 'glamorous';
+    Flex,
+    TabLI,
+    TabLink,
+    TabList,
+    TabUL,
+    MenuList,
+    MenuUL,
+    MenuLI,
+    MenuLink,
+    DEFAULT_THEME
+} from './common';
 
 class Tabs extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-        this.state = {
-            uncontrolledActiveKey: null
-        };
+        this.state = {};
     }
 
-    componentDidMount () {
-        const {defaultActiveKey} = this.props;
-        if (common.__hasValue(defaultActiveKey)) {
+    componentDidMount() {
+        const { defaultActiveKey } = this.props;
+        if (__hasValue(defaultActiveKey)) {
             this.setState({
                 uncontrolledActiveKey: defaultActiveKey
             });
         }
     }
 
-    render () {
-        const {id, children, stacked} = this.props;
+    render() {
+        const { id, children, stacked, theme } = this.props;
 
         const tabs = __getTabs(children);
 
@@ -40,18 +44,18 @@ class Tabs extends React.Component {
             this.props.onSelect
         );
 
-        const tabsTheme = {
-            ...theme,
-            ...this.props.theme
+        const MenuWrapper = !stacked ? TabList : MenuList;
+
+        const derivedTheme = {
+            ...DEFAULT_THEME,
+            ...(theme || {})
         };
 
         return (
-            <ThemeProvider theme={tabsTheme}>
-                <Flex id={id} flex={1} flexShrink={0} column={!stacked} overflow="hidden">
-                    <Flex flexShrink={0} id={`${id}-tab-menu`}>
-                        {this._renderTabLinks(tabs)}
-                    </Flex>
-                    <Flex flex={1} flexShrink={0} overflow="auto" id={`${id}-tab-content`}>
+            <ThemeProvider theme={derivedTheme}>
+                <Flex id={id} column={!stacked} flex={1} overflow="hidden">
+                    <MenuWrapper>{this._renderTabLinks(tabs, stacked)}</MenuWrapper>
+                    <Flex className="overflow-auto" flex={1} id={`tab-content-${id}`}>
                         {this._renderTabContent(tabs)}
                     </Flex>
                 </Flex>
@@ -59,92 +63,87 @@ class Tabs extends React.Component {
         );
     }
 
-    _renderTabLinks (tabs) {
-        const WrapperUL = this._getULWrapper();
-        return (
-            <WrapperUL>
-                {tabs.map(this._renderTabLink.bind(this))}
-            </WrapperUL>
-        );
+    _renderTabLinks(tabs, stacked) {
+        if (!stacked) {
+            return this._renderHorizontalTabLinks(tabs);
+        }
+        return this._renderVerticalTabLinks(tabs);
     }
 
-    _renderTabLink (child, index) {
-        const WrapperLI = this._getLIWrapper();
-        const WrapperLink = this._getLinkWrapper();
-        const {label, eventKey} = child.props;
+    _renderHorizontalTabLinks(tabs) {
+        return <TabUL>{tabs.map(this._renderTabLink.bind(this, TabLI, TabLink))}</TabUL>;
+    }
+
+    _renderVerticalTabLinks(tabs) {
+        return <MenuUL>{tabs.map(this._renderTabLink.bind(this, MenuLI, MenuLink))}</MenuUL>;
+    }
+
+    _renderTabLink(ListItem, Anchor, child, index) {
+        const { label, eventKey } = child.props;
+        const isActive = eventKey === this._getActiveKey();
         return (
-            <WrapperLI
-                active={eventKey === this._getActiveKey()}
+            <ListItem
+                id={`${this.props.id}-tab-item-${eventKey}`}
                 key={index}
-                onClick={this._handleTabSelect.bind(this, eventKey)}>
-                <WrapperLink active={eventKey === this._getActiveKey()}>
-                    {label}
-                </WrapperLink>
-            </WrapperLI>
+                isActive={isActive}
+                onClick={this._handleTabSelect.bind(this, eventKey)}
+            >
+                <Anchor isActive={isActive}>{label}</Anchor>
+            </ListItem>
         );
     }
 
-    _renderTabContent (tabs) {
-        return tabs.map((tab, key) => {
-            if (tab.props.eventKey === this._getActiveKey()) {
-                return React.cloneElement(tab, {stacked: this._isStacked(), key});
-            }
-        });
+    _renderTabContent(tabs) {
+        return tabs
+            .map((tab, key) => {
+                return tab.props.eventKey === this._getActiveKey()
+                    ? React.cloneElement(tab, { stacked: this._isStacked(), key })
+                    : null;
+            })
+            .filter(tab => tab);
     }
 
-    _getActiveKey () {
-        return common.__hasValue(this.props.activeKey)
+    _handleTabSelect(eventKey) {
+        if (this.props.onSelect) {
+            this.props.onSelect(eventKey);
+        } else if (eventKey !== this.state.uncontrolledActiveKey) {
+            this.setState({ uncontrolledActiveKey: eventKey });
+        }
+    }
+
+    _getActiveKey() {
+        return __hasValue(this.props.activeKey)
             ? this.props.activeKey
             : this.state.uncontrolledActiveKey;
     }
 
-    _handleTabSelect (eventKey) {
-        if (this.props.onSelect) {
-            this.props.onSelect(eventKey);
-        } else if (eventKey !== this.state.uncontrolledActiveKey) {
-            this.setState({uncontrolledActiveKey: eventKey});
-        }
-    }
-
-    _getLIWrapper () {
-        return this._isStacked() ? StackedLI : LI;
-    }
-
-    _getULWrapper () {
-        return this._isStacked() ? StackedUL : UL;
-    }
-
-    _getLinkWrapper () {
-        return this._isStacked() ? StackedLink : Link;
-    }
-
-    _isStacked () {
+    _isStacked() {
         return this.props.stacked === true;
     }
 }
 
-function __getTabs (children) {
+const __getTabs = children => {
     const tabs = !Array.isArray(children) ? [children] : children;
     return tabs.filter(tab => {
         if (!tab) return false;
         return tab.hide !== false;
     });
-}
+};
 
-function __detectDescendantTypeMismatches (tabs) {
+const __detectDescendantTypeMismatches = tabs => {
     const typeMismatches = __getTypeMismatches(tabs);
     if (typeMismatches.length > 0) {
         __logTypeMismatches(typeMismatches);
         throw new Error('Descendant type mismatches detected');
     }
-}
+};
 
-function __getTypeMismatches (tabs) {
+const __getTypeMismatches = tabs => {
     if (!tabs) return [];
-    return tabs.filter(child => child.type !== <Tab/>.type);
-}
+    return tabs.filter(child => child.type !== <Tab />.type);
+};
 
-function __logTypeMismatches (typeMismatches) {
+const __logTypeMismatches = typeMismatches => {
     if (!typeMismatches) return;
     typeMismatches.forEach(typeMismatch => {
         console.error(
@@ -153,17 +152,9 @@ function __logTypeMismatches (typeMismatches) {
             )}"`
         );
     });
-}
+};
 
-function __getType (instance) {
-    if (!instance.type) return 'Unknown';
-    if (typeof instance.type === 'function') {
-        return instance.type.name;
-    }
-    return instance.type;
-}
-
-function __detectControlledUncontrolledPropMismatches (activeKey, defaultActiveKey, onSelect) {
+const __detectControlledUncontrolledPropMismatches = (activeKey, defaultActiveKey, onSelect) => {
     if (__hasValues(activeKey, defaultActiveKey)) {
         throw new Error(
             'Mixing controlled and uncontrolled props. Specify an "activeKey" or a "defaultActiveKey", but not both'
@@ -174,19 +165,31 @@ function __detectControlledUncontrolledPropMismatches (activeKey, defaultActiveK
             'Mixing controlled and uncontrolled props. If specifying an "onSelect" function, use "activeKey" instead of "defaultActiveKey'
         );
     }
-}
+};
 
-function __hasValues (...values) {
-    return values.every(value => common.__hasValue(value));
-}
+const __getType = instance => {
+    if (!instance.type) return 'Unknown';
+    if (typeof instance.type === 'function') {
+        return instance.type.name;
+    }
+    return instance.type;
+};
+
+const __hasValues = (...values) => {
+    return values.every(value => __hasValue(value));
+};
+
+const __hasValue = val => {
+    return val !== undefined && val !== null;
+};
 
 Tabs.propTypes = {
-    id              : PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    activeKey       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    stacked         : PropTypes.bool,
-    onSelect        : PropTypes.func,
-    children        : PropTypes.node.isRequired
+    activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    stacked: PropTypes.bool,
+    onSelect: PropTypes.func,
+    children: PropTypes.node.isRequired
 };
 
 export default Tabs;
