@@ -77,5 +77,3 @@ Yarn or npm:
         </Tab>
       </Tabs>
     )
-
-## <a name="react-tabify#props">Props</a>
