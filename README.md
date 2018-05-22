@@ -47,7 +47,7 @@ Yarn or npm:
 [![Edit ymopvryp81](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ymopvryp81)
 
     const MyTabs = () => (
-      <Tabs defaultActiveKey={0}>
+      <Tabs id="my-tabs" defaultActiveKey={0}>
         <Tab eventKey={0} label="Tab 1">
           First Content
         </Tab>
@@ -65,7 +65,7 @@ Yarn or npm:
 [![Edit n4yxz04250](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n4yxz04250)
 
     const MyTabs = () => (
-      <Tabs stacked defaultActiveKey={0}>
+      <Tabs stacked id="my-tabs" defaultActiveKey={0}>
         <Tab eventKey={0} label="Tab 1">
           First Content
         </Tab>
