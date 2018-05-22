@@ -103,10 +103,15 @@ class Tabs extends React.Component {
 
     _renderTabContent(tabs) {
         return tabs
-            .map((tab, key) => {
-                return tab.props.eventKey === this._getActiveKey()
-                    ? React.cloneElement(tab, { stacked: this._isStacked(), key })
-                    : null;
+            .map((tab, index) => {
+                if (tab.props.eventKey !== this._getActiveKey()) {
+                    return null;
+                }
+                return React.cloneElement(tab, {
+                    key: index,
+                    stacked: this._isStacked(),
+                    eventKey: tab.props.eventKey || index
+                });
             })
             .filter(tab => tab);
     }
@@ -136,15 +141,10 @@ class Tabs extends React.Component {
 
 const __getTabs = children => {
     const tabs = !Array.isArray(children) ? [children] : children;
-    return tabs
-        .map((tab, index) => {
-            if (!tab) return false;
-            if (!__hasValue(tab.eventKey)) {
-                tab.eventKey = index;
-            }
-            return tab.hide !== false;
-        })
-        .filter(tab => tab);
+    return tabs.filter(tab => {
+        if (!tab) return false;
+        return tab.hide !== false;
+    });
 };
 
 const __detectDescendantTypeMismatches = tabs => {
