@@ -10,3 +10,32 @@
 # react-tabify
 
 Dead simple tab component for ReactJS.
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [CommonJS](#commonjs)
+  - [ES6 Modules](#es6-modules)
+  - [Examples](#examples)
+- [Props](#props)
+
+
+## <a name="react-tabify#installation">Installation</a>
+
+Yarn or npm:
+
+* `$ yarn add react-tabify`
+* `$ npm install --save react-tabify`
+
+## <a name="react-tabifyy#usage">Usage</a>
+
+### <a name="react-tabifyy#commonjs">CommonJS</a>
+
+    const { Tabs, Tab } = require('react-tabify');
+
+### <a name="react-tabifyy#es6-modules">ES6 Modules</a>
+
+    import { Tabs, Tab } from 'react-tabify';
+    
+### <a name="react-tabifyy#examples">Examples</a>
+
+## <a name="react-tabifyy#props">Props</a>
