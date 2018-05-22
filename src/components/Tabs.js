@@ -103,15 +103,12 @@ class Tabs extends React.Component {
 
     _renderTabContent(tabs) {
         return tabs
-            .map((tab, index) => {
-                if (tab.props.eventKey !== this._getActiveKey()) {
+            .map((tab, key) => {
+                const eventKey = tab.props.eventKey || key;
+                if (eventKey !== this._getActiveKey()) {
                     return null;
                 }
-                return React.cloneElement(tab, {
-                    key: index,
-                    stacked: this._isStacked(),
-                    eventKey: tab.props.eventKey || index
-                });
+                return React.cloneElement(tab, { key, eventKey });
             })
             .filter(tab => tab);
     }
