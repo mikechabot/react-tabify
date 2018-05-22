@@ -88,13 +88,14 @@ class Tabs extends React.Component {
 
     _renderTabLink(ListItem, Anchor, child, index) {
         const { label, eventKey } = child.props;
-        const isActive = eventKey === this._getActiveKey();
+        const key = __hasValue(eventKey) ? eventKey : index;
+        const isActive = key === this._getActiveKey();
         return (
             <ListItem
-                id={`${this._getId()}-tab-item-${eventKey}`}
+                id={`${this._getId()}-tab-item-${key}`}
                 key={index}
                 isActive={isActive}
-                onClick={this._handleTabSelect.bind(this, eventKey)}
+                onClick={this._handleTabSelect.bind(this, key)}
             >
                 <Anchor isActive={isActive}>{label}</Anchor>
             </ListItem>
@@ -103,12 +104,12 @@ class Tabs extends React.Component {
 
     _renderTabContent(tabs) {
         return tabs
-            .map((tab, key) => {
-                const eventKey = tab.props.eventKey || key;
-                if (eventKey !== this._getActiveKey()) {
+            .map((tab, index) => {
+                const key = __hasValue(tab.props.eventKey) ? tab.props.eventKey : index;
+                if (key !== this._getActiveKey()) {
                     return null;
                 }
-                return React.cloneElement(tab, { key, eventKey });
+                return React.cloneElement(tab, { key });
             })
             .filter(tab => tab);
     }
@@ -125,10 +126,6 @@ class Tabs extends React.Component {
         return __hasValue(this.props.activeKey)
             ? this.props.activeKey
             : this.state.uncontrolledActiveKey;
-    }
-
-    _isStacked() {
-        return this.props.stacked === true;
     }
 
     _getId() {
