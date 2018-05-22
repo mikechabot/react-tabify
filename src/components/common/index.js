@@ -1,5 +1,4 @@
 import glamorous from 'glamorous';
-import Maybe from 'maybe-baby';
 
 const COLOR = {
     LINK: '#3273dc',
@@ -35,12 +34,6 @@ export const DEFAULT_THEME = {
             backgroundColor: COLOR.WHITESMOKE
         }
     }
-};
-
-const __getTabTheme = theme => {
-    return Maybe.of(() => theme.tabs)
-        .orElse(DEFAULT_THEME)
-        .join();
 };
 
 const ALLOWED_FLEX_PROPS = [
