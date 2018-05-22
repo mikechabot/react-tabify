@@ -63,9 +63,6 @@ export default () => (
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |
 | `children`         | `node`               |                     | `<Tab />` components                                    |
 
-
-Alternatively, to control the component, you can pass an `activeKey`, which also corresponds to the `eventKey` of a `<Tab />`, but you **must** pass an `onSelect` callback to handle the event.
-
 ### `<Tab />`
 
 | Name               | Type                 | Default             | Description                                             | 
@@ -96,3 +93,41 @@ If `<Tab />` components are not passed an `eventKey`, they will default to their
   </Tab>
 </Tabs>
 ```
+[![Edit k9zlwno4zv](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k9zlwno4zv)
+
+### Controlled Mode
+
+Alternatively, to control the component, pass an `activeKey`, which corresponds to the `eventKey` of a `<Tab />`, however you must pass an `onSelect` callback to handle the event. `onSelect` passes the `eventKey` of the selected `<Tab />`.
+
+Again, if your `<Tab />` components are not passed an `eventKey`, they will default to their order index.
+
+```js
+import { Tab, Tabs } from 'react-tabify';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: 0
+    };
+  }
+
+  handleTabSelect = activeKey => {
+    this.setState({ activeKey });
+  };
+
+  render() {
+    return (
+      <div style={styles}>
+        <Tabs activeKey={this.state.activeKey} onSelect={this.handleTabSelect}>
+          <Tab label="Tab 1">First Content</Tab>
+          <Tab label="Tab 2">Secont Content</Tab>
+          <Tab label="Tab 3">Third Content</Tab>
+        </Tabs>
+      </div>
+    );
+  }
+}
+```
+
+[![Edit 30zw8qz25p](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/30zw8qz25p)
