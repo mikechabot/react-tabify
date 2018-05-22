@@ -255,4 +255,25 @@ const theme = {
 ```
 
 
+```js
+const theme = {
+  tabs: {
+    color: "red",
+    active: {
+      color: "green"
+    }
+  }
+}
+
+const App = () => (
+  <Tabs theme={theme}>
+    <Tab label="Tab 1">First Content</Tab>
+    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 3">Third Content</Tab>
+  </Tabs>
+);
+```
+
+[![Edit 1y19m2q7mj](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/1y19m2q7mj)
+
 
