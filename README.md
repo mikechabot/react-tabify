@@ -16,7 +16,6 @@ Dead simple tab component for ReactJS.
   - [CommonJS](#commonjs)
   - [ES6 Modules](#es6-modules)
   - [Examples](#examples)
-    - [Basic](#basic)
     
 - [Props](#props)
 
@@ -40,40 +39,34 @@ Yarn or npm:
     
 ### <a name="react-tabify#examples">Examples</a>
 
-### <a name="react-tabifyy#horizontal">Basic</a>
-
 **Horizontal**: The default layout
 
 [![Edit ymopvryp81](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ymopvryp81)
 
-    const MyTabs = () => (
-      <Tabs id="my-tabs" defaultActiveKey={0}>
-        <Tab eventKey={0} label="Tab 1">
-          First Content
-        </Tab>
-        <Tab eventKey={1} label="Tab 2">
-          Secont Content
-        </Tab>
-        <Tab eventKey={2} label="Tab 3">
-          Third Content
-        </Tab>
-      </Tabs>
-    )
+    <Tabs id="my-tabs" defaultActiveKey={0}>
+      <Tab eventKey={0} label="Tab 1">
+        First Content
+      </Tab>
+      <Tab eventKey={1} label="Tab 2">
+        Secont Content
+      </Tab>
+      <Tab eventKey={2} label="Tab 3">
+        Third Content
+      </Tab>
+    </Tabs>
     
 **Vertical**: Just pass the `stacked` prop to `Tabs`
 
 [![Edit n4yxz04250](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n4yxz04250)
 
-    const MyTabs = () => (
-      <Tabs stacked id="my-tabs" defaultActiveKey={0}>
-        <Tab eventKey={0} label="Tab 1">
-          First Content
-        </Tab>
-        <Tab eventKey={1} label="Tab 2">
-          Secont Content
-        </Tab>
-        <Tab eventKey={2} label="Tab 3">
-          Third Content
-        </Tab>
-      </Tabs>
-    )
+    <Tabs stacked id="my-tabs" defaultActiveKey={0}>
+      <Tab eventKey={0} label="Tab 1">
+        First Content
+      </Tab>
+      <Tab eventKey={1} label="Tab 2">
+        Secont Content
+      </Tab>
+      <Tab eventKey={2} label="Tab 3">
+        Third Content
+      </Tab>
+    </Tabs>
