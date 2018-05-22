@@ -135,7 +135,7 @@ export default () => (
   </Tabs>
 );
 ```
-[![Edit w2wzlnqyw](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w2wzlnqyw)
+[![Edit p5y4mpxowq](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/p5y4mpxowq)
 
 ### Nested
 
