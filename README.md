@@ -84,9 +84,9 @@ export default () => (
 
 ### Uncontrolled Mode
 
-By default, the `<Tabs />` component is uncontrolled, and will display the first `<Tab />` child during render. However, pass a `defaultActiveKey`, which corresponds to the `eventKey` of a `<Tab />`, to override the default. After this, `<Tabs />` will manage itself.
+By default, `<Tabs />` are uncontrolled, and will display the first `<Tab />` child during initial render. Use `defaultActiveKey` to default to another `<Tab />` instead.
 
-If `<Tab />` components are not passed an `eventKey`, they will default to their order index. In the example below, we're defaulting `<Tabs />` to display "Tab 3" since it sits at index `2`.
+If `<Tab />` components are not passed an `eventKey`, they will default to their order index. In the example below, we're defaulting `<Tabs />` to display "Tab 3" since it sits at the second index (`defaultActiveKey={2}`).
 
 ```js
 export default () => (
@@ -103,7 +103,7 @@ export default () => (
 
 ### Controlled Mode
 
-Alternatively, to control the component, pass an `activeKey`, which corresponds to the `eventKey` of a `<Tab />`, however you must pass an `onSelect` callback to handle the event. `onSelect` passes the `eventKey` of the selected `<Tab />`.
+Alternatively, to control the component, pass an `activeKey`, however you must pass an `onSelect` callback to handle the event. `onSelect` passes the `eventKey` of the selected `<Tab />`.
 
 Again, if your `<Tab />` components are not passed an `eventKey`, they will default to their order index.
 
