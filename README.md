@@ -70,6 +70,7 @@ export default () => (
 | ------------------ |----------------------| --------------------|---------------------------------------------------------|
 | `eventKey `        | `string` / `number`  | `index`             | Unique key of the `<Tab />`                             |
 | `label`            | `string` / `node`    |                     | Label of the `<Tab/>`                                   |
+| `hide `            | `bool`               | false               | Whether to hide the `<Tab/>`                            |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |  
 | `children`         | `node`               |                     | Any abritary React node                                 |
 
@@ -216,6 +217,29 @@ const App = () => (
 ```
 
 [![Edit w2wzlnqyw](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w2wzlnqyw)
+
+----
+
+### Hiding Tabs
+
+Use the `hide` prop to dynmically hide/show `<Tab />` components. Pass a `bool`, or evaluate a function that returns a `bool`.
+
+```js
+// Dummy rejection
+const __hasAccess = user => false;
+
+const App = ({user}) => (
+  <div style={styles}>
+    <Tabs>
+      <Tab label="Super Admin Tab" hide>Super Admin Content</Tab>
+      <Tab label="Admin Tab" hide={() => !__hasAccess(user)}>Admin Content</Tab>
+      <Tab label="User Tab">User Content</Tab>
+    </Tabs>
+  </div>
+);
+```
+
+[![Edit 1y19m2q7mj](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/1y19m2q7mj)
 
 ----
 
