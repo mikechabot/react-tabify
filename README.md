@@ -42,6 +42,8 @@ Yarn or npm:
 
 #### <a name="react-tabifyy#horizontal">Horizontal</a>
 
+This is the default layout.
+
 [![Edit ymopvryp81](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ymopvryp81)
 
     const MyTabs = () => (
@@ -59,6 +61,8 @@ Yarn or npm:
     )
     
 #### <a name="react-tabifyy#vertical">Vertical</a>
+
+Just pass the `stacked` prop to `Tabs`.
 
 [![Edit n4yxz04250](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n4yxz04250)
 
