@@ -226,5 +226,6 @@ export const MenuLink = glamorous.a(
 
 export const TabDiv = glamorous.div({
     height: '100%',
-    width: '100%'
+    width: '100%',
+    overflow: 'auto'
 });

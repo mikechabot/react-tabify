@@ -53,9 +53,9 @@ class Tabs extends React.Component {
 
         return (
             <ThemeProvider theme={derivedTheme}>
-                <Flex id={id} column={!stacked} flex={1} overflow="hidden">
+                <Flex id={id} column={!stacked} flex={1}>
                     <MenuWrapper>{this._renderTabLinks(tabs, stacked)}</MenuWrapper>
-                    <Flex className="overflow-auto" flex={1} id={`tab-content-${id}`}>
+                    <Flex overflow="hidden" flex={1} id={`tab-content-${id}`}>
                         {this._renderTabContent(tabs)}
                     </Flex>
                 </Flex>
