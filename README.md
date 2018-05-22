@@ -9,15 +9,11 @@
 
 # react-tabify
 
-Dead simple tab component for ReactJS.
+A dead simple tab component for ReactJS.
 
 - [Installation](#installation)
-- [Usage](#usage)
-  - [CommonJS](#commonjs)
-  - [ES6 Modules](#es6-modules)
-  - [Examples](#examples)
-    
-- [Props](#props)
+- [Basic Example](#basic-example)
+- [Components](#components)
 
 
 ## <a name="react-tabify#installation">Installation</a>
@@ -27,47 +23,42 @@ Yarn or npm:
 * `$ yarn add react-tabify`
 * `$ npm install --save react-tabify`
 
-## <a name="react-tabify#usage">Usage</a>
+## <a name="react-tabify#basic-example">Basic Example</a>
 
-### <a name="react-tabify#commonjs">CommonJS</a>
+```js
+import { Tabs, Tab } from 'react-tabify';
 
-    const { Tabs, Tab } = require('react-tabify');
+export default () => (
+  <Tabs>
+    <Tab label="Tab 1">
+      First Content
+    </Tab>
+    <Tab label="Tab 2">
+      Secont Content
+    </Tab>
+    <Tab label="Tab 3">
+      Third Content
+    </Tab>
+  </Tabs>
+);
+```
 
-### <a name="react-tabify#es6-modules">ES6 Modules</a>
+## <a name="react-tabify#components">Components</a>
 
-    import { Tabs, Tab } from 'react-tabify';
-    
-### <a name="react-tabify#examples">Examples</a>
+`react-tabify` consists of two (2) components which need to be used together.
 
-**Horizontal**: The default layout
+### <Tabs />
 
-[![Edit ymopvryp81](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ymopvryp81)
+By default, the `<Tabs />` component is uncontrolled, however you can optionally pass a `defaultActiveKey`, which corresponds to the `eventKey` of a particular `<Tab />`, and the inital tab set will be set on render. 
 
-    <Tabs id="my-tabs" defaultActiveKey={0}>
-      <Tab eventKey={0} label="Tab 1">
-        First Content
-      </Tab>
-      <Tab eventKey={1} label="Tab 2">
-        Secont Content
-      </Tab>
-      <Tab eventKey={2} label="Tab 3">
-        Third Content
-      </Tab>
-    </Tabs>
+| Name               | Type                 | Default             | Description   | 
+| ------------------ |----------------------| --------------------|------------------------------|
+| `id`               | `string`             | `__react-tabify__`  | Id of the `<Tabs />` component |
+| `defaultActiveKey` | `string` / `number`  | `0`                 | `eventKey` of the initial `<Tab />` to render |
+| `activeKey`        | `string` / `number`  |                     | `eventKey` of the current `<Tab />` |
+| `stacked`          | `bool`               | `false`             | Whether to display `<Tabs />` vertically  |
+| `onSelect`         | `func`               |                     | Callback fired when a `<Tab />` is selected |
+| `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |
+| `children`         | `node`               |                     | `<Tab />` components  |
 
-
-**Vertical**: Just pass the `stacked` prop to `Tabs`
-
-[![Edit n4yxz04250](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n4yxz04250)
-
-    <Tabs stacked id="my-tabs" defaultActiveKey={0}>
-      <Tab eventKey={0} label="Tab 1">
-        First Content
-      </Tab>
-      <Tab eventKey={1} label="Tab 2">
-        Secont Content
-      </Tab>
-      <Tab eventKey={2} label="Tab 3">
-        Third Content
-      </Tab>
-    </Tabs>
+### <Tab />
