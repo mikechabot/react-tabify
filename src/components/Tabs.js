@@ -17,6 +17,8 @@ import {
     DEFAULT_THEME
 } from './common';
 
+const DEFAULT_ID = '__react-tabify__';
+
 class Tabs extends React.Component {
     constructor(props) {
         super(props);
@@ -24,16 +26,22 @@ class Tabs extends React.Component {
     }
 
     componentDidMount() {
-        const { defaultActiveKey } = this.props;
-        if (__hasValue(defaultActiveKey)) {
-            this.setState({
-                uncontrolledActiveKey: defaultActiveKey
-            });
+        const { activeKey, defaultActiveKey } = this.props;
+
+        if (__hasValue(activeKey)) {
+            return;
         }
+
+        let uncontrolledActiveKey = 0;
+        if (__hasValue(defaultActiveKey)) {
+            uncontrolledActiveKey = defaultActiveKey;
+        }
+
+        this.setState({ uncontrolledActiveKey });
     }
 
     render() {
-        const { id, children, stacked, theme } = this.props;
+        const { children, stacked, theme } = this.props;
 
         const tabs = __getTabs(children);
 
@@ -53,9 +61,9 @@ class Tabs extends React.Component {
 
         return (
             <ThemeProvider theme={derivedTheme}>
-                <Flex id={id} column={!stacked} flex={1}>
+                <Flex id={this._getId()} column={!stacked} flex={1}>
                     <MenuWrapper>{this._renderTabLinks(tabs, stacked)}</MenuWrapper>
-                    <Flex overflow="hidden" flex={1} id={`tab-content-${id}`}>
+                    <Flex overflow="hidden" flex={1} id={`tab-content-${this._getId()}`}>
                         {this._renderTabContent(tabs)}
                     </Flex>
                 </Flex>
@@ -83,7 +91,7 @@ class Tabs extends React.Component {
         const isActive = eventKey === this._getActiveKey();
         return (
             <ListItem
-                id={`${this.props.id}-tab-item-${eventKey}`}
+                id={`${this._getId()}-tab-item-${eventKey}`}
                 key={index}
                 isActive={isActive}
                 onClick={this._handleTabSelect.bind(this, eventKey)}
@@ -120,14 +128,23 @@ class Tabs extends React.Component {
     _isStacked() {
         return this.props.stacked === true;
     }
+
+    _getId() {
+        return this.props.id || DEFAULT_ID;
+    }
 }
 
 const __getTabs = children => {
     const tabs = !Array.isArray(children) ? [children] : children;
-    return tabs.filter(tab => {
-        if (!tab) return false;
-        return tab.hide !== false;
-    });
+    return tabs
+        .map((tab, index) => {
+            if (!tab) return false;
+            if (!__hasValue(tab.eventKey)) {
+                tab.eventKey = index;
+            }
+            return tab.hide !== false;
+        })
+        .filter(tab => tab);
 };
 
 const __detectDescendantTypeMismatches = tabs => {
@@ -184,7 +201,7 @@ const __hasValue = val => {
 };
 
 Tabs.propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     stacked: PropTypes.bool,
