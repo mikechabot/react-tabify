@@ -32,15 +32,9 @@ import { Tab, Tabs } from 'react-tabify';
 
 export default () => (
   <Tabs>
-    <Tab label="Tab 1">
-      First Content
-    </Tab>
-    <Tab label="Tab 2">
-      Secont Content
-    </Tab>
-    <Tab label="Tab 3">
-      Third Content
-    </Tab>
+    <Tab label="Tab 1">First Content</Tab>
+    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 3">Third Content</Tab>
   </Tabs>
 );
 ```
@@ -82,15 +76,9 @@ If `<Tab />` components are not passed an `eventKey`, they will default to their
 
 ```js
 <Tabs defaultActiveKey={2}>
-  <Tab label="Tab 1">
-   First Content
-  </Tab>
-  <Tab label="Tab 2">
-    Secont Content
-  </Tab>
-  <Tab label="Tab 3">
-   Third Content
-  </Tab>
+  <Tab label="Tab 1">First Content</Tab>
+  <Tab label="Tab 2">Secont Content</Tab>
+  <Tab label="Tab 3">Third Content</Tab>
 </Tabs>
 ```
 [![Edit k9zlwno4zv](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k9zlwno4zv)
@@ -118,13 +106,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={styles}>
-        <Tabs activeKey={this.state.activeKey} onSelect={this.handleTabSelect}>
-          <Tab label="Tab 1">First Content</Tab>
-          <Tab label="Tab 2">Secont Content</Tab>
-          <Tab label="Tab 3">Third Content</Tab>
-        </Tabs>
-      </div>
+      <Tabs activeKey={this.state.activeKey} onSelect={this.handleTabSelect}>
+        <Tab label="Tab 1">First Content</Tab>
+        <Tab label="Tab 2">Secont Content</Tab>
+        <Tab label="Tab 3">Third Content</Tab>
+      </Tabs>
     );
   }
 }
