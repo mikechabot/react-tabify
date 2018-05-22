@@ -16,6 +16,10 @@ A dead simple tab component for ReactJS.
 - [Components](#components)
 - [Controlled vs Uncontrolled Mode](#controlled-vs-uncontrolled-mode)
 - [Other Examples](#other-examples)
+  - [Stacked](#stacked)
+  - [Nested](#nested)
+  - [Container Overflow](#container-overflow)
+  - [Hiding Tabs](#hiding-tabs)
 - [Color Theme](#color-theme)
 
 ## <a name="react-tabify#installation">Installation</a>
@@ -134,9 +138,9 @@ class App extends React.Component {
 
 ----
 
-## <a name="react-tabify#other-exampels">Other Examples</a>
+## <a name="react-tabify#other-examples">Other Examples</a>
 
-### Stacked
+### <a name="react-tabify#stacked">Stacked</a>
 
 Add the `stacked` prop to render the tabs vertically.
 
@@ -153,7 +157,7 @@ export default () => (
 
 ----
 
-### Nested
+### <a name="react-tabify#nested">Nested</a>
 
 Easily nest tabs to create a section/subsection layout.
 
@@ -189,7 +193,7 @@ export default () => (
 
 ----
 
-### Container Overflow
+### <a name="react-tabify#container-overflow">Container Overflow</a>
 
 To ensure that scrolling (i.e. `overflow`) is only visible within the `<Tab />` component, we'll want to wrap `<Tabs />` with a Flexbox whose height is set to `100%`. Otherwise, if our `<Tab />` had enough content to induce a scrollbar, our entire `<Tabs />` component would be subject to scrolling, which means the clickable tab links (horizontal and stacked) could scroll out of view.    
 
@@ -220,7 +224,7 @@ const App = () => (
 
 ----
 
-### Hiding Tabs
+### <a name="react-tabify#hiding-tabs">Hiding Tabs</a>
 
 Use the `hide` prop to dynmically hide/show `<Tab />` components. Pass a `bool`, or evaluate a function that returns a `bool`.
 
