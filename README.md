@@ -85,6 +85,8 @@ export default () => (
 ```
 [![Edit k9zlwno4zv](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k9zlwno4zv)
 
+----
+
 ### Controlled Mode
 
 Alternatively, to control the component, pass an `activeKey`, which corresponds to the `eventKey` of a `<Tab />`, however you must pass an `onSelect` callback to handle the event. `onSelect` passes the `eventKey` of the selected `<Tab />`.
