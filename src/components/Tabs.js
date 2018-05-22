@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Maybe from 'maybe-baby';
 import { ThemeProvider } from 'glamorous';
 
 import Tab from './Tab';
@@ -22,7 +23,9 @@ const DEFAULT_ID = '__react-tabify__';
 class Tabs extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            theme: __getDerivedTheme(props.theme)
+        };
     }
 
     componentDidMount() {
@@ -41,7 +44,7 @@ class Tabs extends React.Component {
     }
 
     render() {
-        const { children, stacked, theme, style } = this.props;
+        const { children, stacked, style } = this.props;
 
         const tabs = __getTabs(children);
 
@@ -54,13 +57,8 @@ class Tabs extends React.Component {
 
         const MenuWrapper = !stacked ? TabList : MenuList;
 
-        const derivedTheme = {
-            ...DEFAULT_THEME,
-            ...(theme || {})
-        };
-
         return (
-            <ThemeProvider theme={derivedTheme}>
+            <ThemeProvider theme={this.state.theme}>
                 <Flex id={this._getId()} column={!stacked} flex={1} style={style}>
                     <MenuWrapper>{this._renderTabLinks(tabs, stacked)}</MenuWrapper>
                     <Flex overflow="hidden" flex={1} id={`tab-content-${this._getId()}`}>
@@ -137,8 +135,77 @@ const __getTabs = children => {
     const tabs = !Array.isArray(children) ? [children] : children;
     return tabs.filter(tab => {
         if (!tab) return false;
-        return tab.hide !== false;
+        return tab.props.hide !== true;
     });
+};
+
+const __getDerivedTheme = theme => {
+    if (!theme || Object.keys(theme).length === 0) {
+        return DEFAULT_THEME;
+    }
+    const derivedTheme = {
+        tabs: {},
+        menu: {}
+    };
+
+    console.log('Building derived theme');
+    if (!theme.tabs || __isEmpty(theme.tabs)) {
+        derivedTheme.tabs = DEFAULT_THEME.tabs;
+    } else {
+        derivedTheme.tabs = __getDerivedTabsTheme(theme.tabs, DEFAULT_THEME.tabs);
+    }
+
+    if (!theme.menu || __isEmpty(theme.menu)) {
+        derivedTheme.menu = DEFAULT_THEME.menu;
+    } else {
+        derivedTheme.menu = __getDerivedMenuTheme(theme.menu, DEFAULT_THEME.menu);
+    }
+
+    return derivedTheme;
+};
+
+const __getDerivedTabsTheme = (tabs, theme) => {
+    const { active, hover } = tabs;
+    return {
+        color: __valOrDefault(() => tabs.color, theme.color),
+        borderBottomColor: __valOrDefault(() => tabs.borderBottomColor, theme.borderBottomColor),
+        active: {
+            borderBottomColor: __valOrDefault(
+                () => active.borderBottomColor,
+                theme.active.borderBottomColor
+            ),
+            color: __valOrDefault(() => active.color, theme.active.color)
+        },
+        hover: {
+            borderBottomColor: __valOrDefault(
+                () => hover.borderBottomColor,
+                theme.hover.borderBottomColor
+            ),
+            color: __valOrDefault(() => hover.color, theme.hover.color)
+        }
+    };
+};
+
+const __getDerivedMenuTheme = (menu, theme) => {
+    const { active, hover } = menu;
+    return {
+        color: __valOrDefault(() => menu.color, theme.color),
+        borderRight: __valOrDefault(() => menu.borderRight, theme.borderRight),
+        active: {
+            backgroundColor: __valOrDefault(() => active.backgroundColor, theme.active.backgroundColor),
+            color: __valOrDefault(() => active.color, theme.active.color)
+        },
+        hover: {
+            backgroundColor: __valOrDefault(() => hover.backgroundColor, theme.hover.backgroundColor),
+            color: __valOrDefault(() => hover.color, theme.hover.color)
+        }
+    };
+};
+
+const __valOrDefault = (accessor, defaultValue) => {
+    return Maybe.of(accessor)
+        .orElse(defaultValue)
+        .join();
 };
 
 const __detectDescendantTypeMismatches = tabs => {
@@ -192,6 +259,11 @@ const __hasValues = (...values) => {
 
 const __hasValue = val => {
     return val !== undefined && val !== null;
+};
+
+const __isEmpty = obj => {
+    if (!obj) return true;
+    return Object.keys(obj).length === 0;
 };
 
 Tabs.propTypes = {

@@ -1,4 +1,5 @@
 import glamorous from 'glamorous';
+import Maybe from 'maybe-baby';
 
 const COLOR = {
     LINK: '#3273dc',
@@ -23,6 +24,7 @@ export const DEFAULT_THEME = {
         }
     },
     menu: {
+        color: COLOR.GREY_DARK,
         borderRight: COLOR.GREY_LIGHTER,
         active: {
             backgroundColor: COLOR.LINK,
@@ -33,6 +35,12 @@ export const DEFAULT_THEME = {
             backgroundColor: COLOR.WHITESMOKE
         }
     }
+};
+
+const __getTabTheme = theme => {
+    return Maybe.of(() => theme.tabs)
+        .orElse(DEFAULT_THEME)
+        .join();
 };
 
 const ALLOWED_FLEX_PROPS = [
@@ -203,7 +211,7 @@ export const MenuLink = glamorous.a(
     ({ isActive, theme }) => {
         const styles = [
             {
-                color: theme.tabs.color
+                color: theme.menu.color
             }
         ];
 
