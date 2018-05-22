@@ -14,6 +14,8 @@ A dead simple tab component for ReactJS.
 - [Installation](#installation)
 - [Basic Example](#basic-example)
 - [Components](#components)
+- [Controlled Vs Uncontrolled Mode](#controlled-vs-uncontrolled-mode)
+
 
 
 ## <a name="react-tabify#installation">Installation</a>
@@ -26,7 +28,7 @@ Yarn or npm:
 ## <a name="react-tabify#basic-example">Basic Example</a>
 
 ```js
-import { Tabs, Tab } from 'react-tabify';
+import { Tab, Tabs } from 'react-tabify';
 
 export default () => (
   <Tabs>
@@ -42,6 +44,8 @@ export default () => (
   </Tabs>
 );
 ```
+
+[![Edit 23x92qvy9n](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/23x92qvy9n)
 
 ## <a name="react-tabify#components">Components</a>
 
@@ -60,8 +64,6 @@ export default () => (
 | `children`         | `node`               |                     | `<Tab />` components                                    |
 
 
-By default, the `<Tabs />` component is **uncontrolled**, however you can optionally pass a `defaultActiveKey`, which corresponds to the `eventKey` of a `<Tab />`, and the inital tab set will be set on render. 
-
 Alternatively, to control the component, you can pass an `activeKey`, which also corresponds to the `eventKey` of a `<Tab />`, but you **must** pass an `onSelect` callback to handle the event.
 
 ### `<Tab />`
@@ -71,6 +73,26 @@ Alternatively, to control the component, you can pass an `activeKey`, which also
 | `eventKey `        | `string` / `number`  | `index`             | Unique key of the `<Tab />`                             |
 | `label`            | `string` / `node`    |                     | Label of the `<Tab/>`                                   |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |  
-| `children`         | `node`               |                     | Any abritary content                                    |
+| `children`         | `node`               |                     | Any abritary React node                                 |
 
+## <a name="react-tabify#controlled-vs-uncontrolled-mode">Controlled Vs Uncontrolled Mode</a>
 
+### Uncontrolled Mode
+
+By default, the `<Tabs />` component is uncontrolled, and will display the first `<Tab />` child during render. However, pass a `defaultActiveKey`, which corresponds to the `eventKey` of a `<Tab />`, to override the default. After this, `<Tabs />` will manage itself.
+
+If `<Tab />` components are not passed an `eventKey`, they will default to their order index. In the example below, we're defaulting `<Tabs />` to display "Tab 3" since it sits at index `2`.
+
+```js
+<Tabs defaultActiveKey={2}>
+  <Tab label="Tab 1">
+   First Content
+  </Tab>
+  <Tab label="Tab 2">
+    Secont Content
+  </Tab>
+  <Tab label="Tab 3">
+   Third Content
+  </Tab>
+</Tabs>
+```
