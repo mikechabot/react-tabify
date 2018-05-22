@@ -84,7 +84,7 @@ export default () => (
 
 ### Uncontrolled Mode
 
-By default, the `<Tabs />` component is uncontrolled, and will display the first `<Tab />` child during render. However, pass a `defaultActiveKey`, which corresponds to the `eventKey` of a `<Tab />`, to override the default. After this, `<Tabs />` will manage itself.
+By default, the `<Tabs />` component is uncontrolled, and will display the first `<Tab />` child during render. To default to another `<Tab />` instead, pass that tab's `eventKey` as `defaultActiveKey` to `<Tabs />`. After this, `<Tabs />` will manage itself.
 
 If `<Tab />` components are not passed an `eventKey`, they will default to their order index. In the example below, we're defaulting `<Tabs />` to display "Tab 3" since it sits at index `2`.
 
