@@ -38,4 +38,21 @@ Yarn or npm:
     
 ### <a name="react-tabifyy#examples">Examples</a>
 
+[![Edit ymopvryp81](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ymopvryp81)
+
+    const MyTabs = () => (
+      <Tabs defaultActiveKey={0}>
+        <Tab eventKey={0} label="Tab 0">
+          First Content
+        </Tab>
+        <Tab eventKey={1} label="Tab 1">
+          Secont Content
+        </Tab>
+        <Tab eventKey={2} label="Tab 2">
+          Third Content
+        </Tab>
+      </Tabs>
+    )
+
+
 ## <a name="react-tabifyy#props">Props</a>
