@@ -69,7 +69,7 @@ Alternatively, to control the component, you can pass an `activeKey`, which also
 | Name               | Type                 | Default             | Description                                             | 
 | ------------------ |----------------------| --------------------|---------------------------------------------------------|
 | `activeKey`        | `string` / `number`  | `index`             | `eventKey` of the current `<Tab />`                     |
-| `label`            | `string` / `node`    |                     | Label of the <Tab/>                                     |
+| `label`            | `string` / `node`    |                     | Label of the `<Tab/>`                                     |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |  
 | `children`         | `node`               |                     | Any abritary content                                    |
 
