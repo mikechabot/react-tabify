@@ -110,6 +110,7 @@ export const TabList = glamorous.div({
 
 export const TabLink = glamorous.a(
     {
+        cursor: 'pointer',
         alignItems: 'center',
         borderBottomStyle: 'solid',
         borderBottomWidth: '1px',
@@ -144,6 +145,7 @@ export const TabLink = glamorous.a(
 
 export const TabUL = glamorous.ul(
     {
+        listStyle: 'none',
         alignItems: 'center',
         borderBottomStyle: 'solid',
         borderBottomWidth: '1px',
@@ -188,6 +190,7 @@ export const MenuLI = glamorous.li({});
 
 export const MenuLink = glamorous.a(
     {
+        cursor: 'pointer',
         borderRadius: '2px',
         display: 'block',
         padding: '0.5em 0.75em'
