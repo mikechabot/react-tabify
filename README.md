@@ -170,3 +170,32 @@ export default () => (
 ```
 
 [![Edit 2pvlwjzp60](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2pvlwjzp60)
+
+### Container Overflow
+
+To ensure that scrolling (i.e. `overflow`) is only visible within the `<Tab />` component, we'll want to wrap `<Tabs />` with a Flexbox whose height is set to `100%`. Otherwise, if our `<Tab />` had enough content to induce a scrollbar, our entire `<Tabs />` component would be subject to scrolling, which means the clickable tab links (horizontal and stacked) could scroll out of view.    
+
+```js
+const tabsContainer = {
+  display: "flex",
+  height: "100%"
+};
+
+const App = () => (
+  <div style={tabsContainer}>
+    <Tabs stacked>
+      <Tab label="Tab 1" style={tabStyle}>
+       {__getLorumIpsum()}
+      </Tab>
+      <Tab label="Tab 2" style={tabStyle}>
+       {__getLorumIpsum()}
+      </Tab>
+      <Tab label="Tab 3" style={tabStyle}>
+        {__getLorumIpsum()}
+      </Tab>
+    </Tabs>
+  </div>
+);
+```
+
+[![Edit w2wzlnqyw](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w2wzlnqyw)
