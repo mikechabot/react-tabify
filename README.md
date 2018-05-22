@@ -42,9 +42,7 @@ Yarn or npm:
 
 ### <a name="react-tabifyy#horizontal">Basic</a>
 
-##### <a name="react-tabify#horizontal">Horizontal</a>
-
-Default layout.
+**Horizontal**: The default layout
 
 [![Edit ymopvryp81](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ymopvryp81)
 
@@ -61,10 +59,8 @@ Default layout.
         </Tab>
       </Tabs>
     )
-    
-##### <a name="react-tabify#vertical">Vertical</a>
-
-Just pass the `stacked` prop to `Tabs`.
+    
+**Vertical**: Just pass the `stacked` prop to `Tabs`
 
 [![Edit n4yxz04250](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n4yxz04250)
 
