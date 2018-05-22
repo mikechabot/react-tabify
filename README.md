@@ -25,6 +25,8 @@ Yarn or npm:
 * `$ yarn add react-tabify`
 * `$ npm install --save react-tabify`
 
+----
+
 ## <a name="react-tabify#basic-example">Basic Example</a>
 
 ```js
@@ -40,6 +42,8 @@ export default () => (
 ```
 
 [![Edit 23x92qvy9n](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/23x92qvy9n)
+
+----
 
 ## <a name="react-tabify#components">Components</a>
 
@@ -57,6 +61,8 @@ export default () => (
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |
 | `children`         | `node`               |                     | `<Tab />` components                                    |
 
+----
+
 ### `<Tab />`
 
 | Name               | Type                 | Default             | Description                                             | 
@@ -65,6 +71,8 @@ export default () => (
 | `label`            | `string` / `node`    |                     | Label of the `<Tab/>`                                   |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |  
 | `children`         | `node`               |                     | Any abritary React node                                 |
+
+----
 
 ## <a name="react-tabify#controlled-vs-uncontrolled-mode">Controlled vs Uncontrolled Mode</a>
 
@@ -121,6 +129,8 @@ class App extends React.Component {
 ```
 
 [![Edit 30zw8qz25p](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/30zw8qz25p)
+
+----
 
 ## <a name="react-tabify#other-exampels">Other Examples</a>
 
