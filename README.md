@@ -253,7 +253,7 @@ const theme = {
   }
 };
 ```
-
+Override any of the properties above: 
 
 ```js
 const theme = {
