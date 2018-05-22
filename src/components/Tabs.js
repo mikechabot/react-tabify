@@ -1,23 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Maybe from 'maybe-baby';
 import { ThemeProvider } from 'glamorous';
 
-import Tab from './Tab';
+import TabService from '../services/tab-service';
 
-import {
-    Flex,
-    TabLI,
-    TabLink,
-    TabList,
-    TabUL,
-    MenuList,
-    MenuUL,
-    MenuLI,
-    MenuLink,
-    DEFAULT_THEME
-} from './common';
+import { Flex, TabLI, TabLink, TabList, TabUL, MenuList, MenuUL, MenuLI, MenuLink } from './common';
 import LocalStorageService from './services/local-storage-service';
+import { __hasValue } from '../common';
 
 const DEFAULT_ID = '__react-tabify__';
 
@@ -25,8 +14,8 @@ class Tabs extends React.Component {
     constructor(props) {
         super(props);
 
-        __detectDescendantTypeMismatches(__getTabs(props.children));
-        __detectControlledUncontrolledPropMismatches(
+        TabService.detectDescendantTypeMismatches(props.children);
+        TabService.detectControlledUncontrolledPropMismatches(
             props.activeKey,
             props.defaultActiveKey,
             props.onSelect,
@@ -34,7 +23,7 @@ class Tabs extends React.Component {
         );
 
         this.state = {
-            theme: __getDerivedTheme(props.theme)
+            theme: TabService.getDerivedTheme(props.theme)
         };
     }
 
@@ -69,7 +58,7 @@ class Tabs extends React.Component {
     render() {
         const { children, stacked, style } = this.props;
 
-        const tabs = __getTabs(children);
+        const tabs = TabService.buildTabs(children);
         const MenuWrapper = !stacked ? TabList : MenuList;
 
         return (
@@ -153,161 +142,6 @@ class Tabs extends React.Component {
         }
     }
 }
-
-const __getTabs = children => {
-    const tabs = !Array.isArray(children) ? [children] : children;
-    return tabs.filter(tab => {
-        if (!tab) return false;
-        const { hide } = tab.props;
-        if (typeof hide === 'function') {
-            return !hide();
-        }
-        return hide !== true;
-    });
-};
-
-const __getDerivedTheme = theme => {
-    if (!theme || Object.keys(theme).length === 0) {
-        return DEFAULT_THEME;
-    }
-
-    const derivedTheme = {};
-    if (!theme.tabs || __isEmpty(theme.tabs)) {
-        derivedTheme.tabs = DEFAULT_THEME.tabs;
-    } else {
-        derivedTheme.tabs = __getDerivedTabsTheme(theme.tabs, DEFAULT_THEME.tabs);
-    }
-
-    if (!theme.menu || __isEmpty(theme.menu)) {
-        derivedTheme.menu = DEFAULT_THEME.menu;
-    } else {
-        derivedTheme.menu = __getDerivedMenuTheme(theme.menu, DEFAULT_THEME.menu);
-    }
-
-    return derivedTheme;
-};
-
-const __getDerivedTabsTheme = (tabs, theme) => {
-    const { active, hover } = tabs;
-    return {
-        color: __valOrDefault(() => tabs.color, theme.color),
-        borderBottomColor: __valOrDefault(() => tabs.borderBottomColor, theme.borderBottomColor),
-        active: {
-            borderBottomColor: __valOrDefault(
-                () => active.borderBottomColor,
-                theme.active.borderBottomColor
-            ),
-            color: __valOrDefault(() => active.color, theme.active.color)
-        },
-        hover: {
-            borderBottomColor: __valOrDefault(
-                () => hover.borderBottomColor,
-                theme.hover.borderBottomColor
-            ),
-            color: __valOrDefault(() => hover.color, theme.hover.color)
-        }
-    };
-};
-
-const __getDerivedMenuTheme = (menu, theme) => {
-    const { active, hover } = menu;
-    return {
-        color: __valOrDefault(() => menu.color, theme.color),
-        borderRight: __valOrDefault(() => menu.borderRight, theme.borderRight),
-        active: {
-            backgroundColor: __valOrDefault(() => active.backgroundColor, theme.active.backgroundColor),
-            color: __valOrDefault(() => active.color, theme.active.color)
-        },
-        hover: {
-            backgroundColor: __valOrDefault(() => hover.backgroundColor, theme.hover.backgroundColor),
-            color: __valOrDefault(() => hover.color, theme.hover.color)
-        }
-    };
-};
-
-const __valOrDefault = (accessor, defaultValue) => {
-    return Maybe.of(accessor)
-        .orElse(defaultValue)
-        .join();
-};
-
-const __detectStickySettingPropMismatches = (id, sticky) => {
-    if (sticky === true && !__hasValue(id)) {
-        console.error('If passing the "sticky" prop, then you must also pass an "id" prop');
-        throw new Error('Sticky setting prop mismatch detected (Missing: Id)');
-    }
-};
-
-const __detectDescendantTypeMismatches = tabs => {
-    const typeMismatches = __getTypeMismatches(tabs);
-    if (typeMismatches.length > 0) {
-        __logTypeMismatches(typeMismatches);
-        throw new Error('Descendant type mismatches detected');
-    }
-};
-
-const __getTypeMismatches = tabs => {
-    if (!tabs) return [];
-    return tabs.filter(child => child.type !== <Tab />.type);
-};
-
-const __logTypeMismatches = typeMismatches => {
-    if (!typeMismatches) return;
-    typeMismatches.forEach(typeMismatch => {
-        console.error(
-            `Expected children of "Tabs" to be of type "Tab", but found type "${__getType(
-                typeMismatch
-            )}"`
-        );
-    });
-};
-
-const __detectControlledUncontrolledPropMismatches = (activeKey, defaultActiveKey, onSelect, sticky) => {
-    if (__hasValues(activeKey, defaultActiveKey)) {
-        throw new Error(
-            'Mixing controlled and uncontrolled props. Specify an "activeKey" or a "defaultActiveKey", but not both'
-        );
-    }
-
-    if (__hasValues(onSelect, defaultActiveKey)) {
-        throw new Error(
-            'Mixing controlled and uncontrolled props. If specifying an "onSelect" function, use "activeKey" instead of "defaultActiveKey'
-        );
-    }
-
-    if (__hasValue(onSelect) && !__hasValue(activeKey)) {
-        throw new Error(
-            'Mixing controlled and uncontrolled props. If specifying an "onSelect" function, you must pass an "activeKey'
-        );
-    }
-
-    if (__hasValues(sticky, activeKey)) {
-        throw new Error(
-            'Mixing controlled and uncontrolled props. Cannot specify "sticky" and "activeKey". Only uncontrolled components can maintain internal stickiness.'
-        );
-    }
-};
-
-const __getType = instance => {
-    if (!instance.type) return 'Unknown';
-    if (typeof instance.type === 'function') {
-        return instance.type.name;
-    }
-    return instance.type;
-};
-
-const __hasValues = (...values) => {
-    return values.every(value => __hasValue(value));
-};
-
-const __hasValue = val => {
-    return val !== undefined && val !== null;
-};
-
-const __isEmpty = obj => {
-    if (!obj) return true;
-    return Object.keys(obj).length === 0;
-};
 
 Tabs.propTypes = {
     id: PropTypes.string,
