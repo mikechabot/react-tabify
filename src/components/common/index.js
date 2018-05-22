@@ -145,6 +145,8 @@ export const TabLink = glamorous.a(
 
 export const TabUL = glamorous.ul(
     {
+        margin: 0,
+        padding: 0,
         listStyle: 'none',
         alignItems: 'center',
         borderBottomStyle: 'solid',
@@ -183,6 +185,9 @@ export const MenuList = glamorous.div(
 );
 
 export const MenuUL = glamorous.ul({
+    margin: 0,
+    padding: 0,
+    listStyle: 'none',
     lineHeight: 1.25
 });
 
