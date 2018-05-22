@@ -16,7 +16,7 @@ A dead simple tab component for ReactJS.
 - [Components](#components)
 - [Controlled vs Uncontrolled Mode](#controlled-vs-uncontrolled-mode)
 - [Other Examples](#other-examples)
-
+- [Color Theme](#color-theme)
 
 ## <a name="react-tabify#installation">Installation</a>
 
@@ -56,6 +56,7 @@ export default () => (
 | `id`               | `string`             | `__react-tabify__`  | Id of the `<Tabs />` component                          |
 | `defaultActiveKey` | `string` / `number`  | `0`                 | `eventKey` of the initial `<Tab />` to render           |
 | `activeKey`        | `string` / `number`  |                     | `eventKey` of the current `<Tab />`                     |
+| `theme  `          | `object`             |                     | Optional color theme                                    |
 | `stacked`          | `bool`               | `false`             | Whether to display `<Tabs />` vertically                |
 | `onSelect`         | `func`               |                     | Callback fired when a `<Tab />` is selected             |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |
@@ -215,3 +216,39 @@ const App = () => (
 ```
 
 [![Edit w2wzlnqyw](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w2wzlnqyw)
+
+----
+
+## <a name="react-tabify#color-theme">Color Theme</a>
+
+`react-tabify` leverages `<ThemeManager />` from [glamorous] to expose an optional `theme` object. The `tabs` property controls the horizontal styling, while `menu` controls the vertical. 
+
+```js
+const theme = {
+  tabs: {
+    color: <color>,
+    borderBottomColor: <color>,
+    active: {
+      borderBottomColor: <color>,
+      color: <color>
+    },
+    hover: {
+      borderBottomColor: <color>,
+      color: <color>
+    }
+  },
+  menu: {
+    color: <color>,
+    borderRight: <color>,
+    active: {
+        backgroundColor: <color>,
+        color: <color>
+    },
+    hover: {
+        color: <color>,
+        backgroundColor: <color>
+    }
+  }
+};
+```
+
