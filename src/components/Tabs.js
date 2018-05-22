@@ -41,7 +41,7 @@ class Tabs extends React.Component {
     }
 
     render() {
-        const { children, stacked, theme } = this.props;
+        const { children, stacked, theme, style } = this.props;
 
         const tabs = __getTabs(children);
 
@@ -61,7 +61,7 @@ class Tabs extends React.Component {
 
         return (
             <ThemeProvider theme={derivedTheme}>
-                <Flex id={this._getId()} column={!stacked} flex={1}>
+                <Flex id={this._getId()} column={!stacked} flex={1} style={style}>
                     <MenuWrapper>{this._renderTabLinks(tabs, stacked)}</MenuWrapper>
                     <Flex overflow="hidden" flex={1} id={`tab-content-${this._getId()}`}>
                         {this._renderTabContent(tabs)}
@@ -206,6 +206,7 @@ Tabs.propTypes = {
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     stacked: PropTypes.bool,
     onSelect: PropTypes.func,
+    style: PropTypes.object,
     children: PropTypes.node.isRequired
 };
 
