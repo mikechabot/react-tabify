@@ -47,19 +47,30 @@ export default () => (
 
 `react-tabify` consists of two (2) components which need to be used together.
 
-### <Tabs />
+### `<Tabs />`
 
-| Name               | Type                 | Default             | Description   | 
-| ------------------ |----------------------| --------------------|------------------------------|
-| `id`               | `string`             | `__react-tabify__`  | Id of the `<Tabs />` component |
-| `defaultActiveKey` | `string` / `number`  | `0`                 | `eventKey` of the initial `<Tab />` to render |
-| `activeKey`        | `string` / `number`  |                     | `eventKey` of the current `<Tab />` |
-| `stacked`          | `bool`               | `false`             | Whether to display `<Tabs />` vertically  |
-| `onSelect`         | `func`               |                     | Callback fired when a `<Tab />` is selected |
+| Name               | Type                 | Default             | Description                                             | 
+| ------------------ |----------------------| --------------------|---------------------------------------------------------|
+| `id`               | `string`             | `__react-tabify__`  | Id of the `<Tabs />` component                          |
+| `defaultActiveKey` | `string` / `number`  | `0`                 | `eventKey` of the initial `<Tab />` to render           |
+| `activeKey`        | `string` / `number`  |                     | `eventKey` of the current `<Tab />`                     |
+| `stacked`          | `bool`               | `false`             | Whether to display `<Tabs />` vertically                |
+| `onSelect`         | `func`               |                     | Callback fired when a `<Tab />` is selected             |
 | `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |
-| `children`         | `node`               |                     | `<Tab />` components  |
+| `children`         | `node`               |                     | `<Tab />` components                                    |
 
 
-By default, the `<Tabs />` component is uncontrolled, however you can optionally pass a `defaultActiveKey`, which corresponds to the `eventKey` of a particular `<Tab />`, and the inital tab set will be set on render. 
+By default, the `<Tabs />` component is **uncontrolled**, however you can optionally pass a `defaultActiveKey`, which corresponds to the `eventKey` of a `<Tab />`, and the inital tab set will be set on render. 
 
-### <Tab />
+Alternatively, to control the component, you can pass an `activeKey`, which also corresponds to the `eventKey` of a `<Tab />`, but you **must** pass an `onSelect` callback to handle the event.
+
+### `<Tab />`
+
+| Name               | Type                 | Default             | Description                                             | 
+| ------------------ |----------------------| --------------------|---------------------------------------------------------|
+| `activeKey`        | `string` / `number`  | `index`             | `eventKey` of the current `<Tab />`                     |
+| `label`            | `string` / `node`    |                     | Label of the <Tab/>                                     |
+| `style`            | `object`             |                     | style forwarded to the `<Tab />` containing `<div />`   |  
+| `children`         | `node`               |                     | Any abritary content                                    |
+
+
