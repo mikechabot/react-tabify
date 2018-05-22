@@ -17,19 +17,29 @@ import {
     MenuLink,
     DEFAULT_THEME
 } from './common';
+import LocalStorageService from './services/local-storage-service';
 
 const DEFAULT_ID = '__react-tabify__';
 
 class Tabs extends React.Component {
     constructor(props) {
         super(props);
+
+        __detectDescendantTypeMismatches(__getTabs(props.children));
+        __detectControlledUncontrolledPropMismatches(
+            props.activeKey,
+            props.defaultActiveKey,
+            props.onSelect,
+            props.sticky
+        );
+
         this.state = {
             theme: __getDerivedTheme(props.theme)
         };
     }
 
     componentDidMount() {
-        const { activeKey, defaultActiveKey } = this.props;
+        const { id, sticky, activeKey, defaultActiveKey } = this.props;
 
         if (__hasValue(activeKey)) {
             return;
@@ -40,21 +50,26 @@ class Tabs extends React.Component {
             uncontrolledActiveKey = defaultActiveKey;
         }
 
+        if (sticky && LocalStorageService.getStickyTab(id)) {
+            const persistedState = LocalStorageService.getStickyTab(id);
+            uncontrolledActiveKey = persistedState.activeKey;
+        }
+
         this.setState({ uncontrolledActiveKey });
+    }
+
+    componentDidUpdate() {
+        this._maybeSaveToLocalStorage();
+    }
+
+    componentWillUnmount() {
+        this._maybeSaveToLocalStorage();
     }
 
     render() {
         const { children, stacked, style } = this.props;
 
         const tabs = __getTabs(children);
-
-        __detectDescendantTypeMismatches(tabs);
-        __detectControlledUncontrolledPropMismatches(
-            this.props.activeKey,
-            this.props.defaultActiveKey,
-            this.props.onSelect
-        );
-
         const MenuWrapper = !stacked ? TabList : MenuList;
 
         return (
@@ -129,6 +144,14 @@ class Tabs extends React.Component {
     _getId() {
         return this.props.id || DEFAULT_ID;
     }
+
+    _maybeSaveToLocalStorage() {
+        if (this.props.sticky) {
+            LocalStorageService.setStickyTab(this.props.id, {
+                activeKey: this._getActiveKey()
+            });
+        }
+    }
 }
 
 const __getTabs = children => {
@@ -147,12 +170,8 @@ const __getDerivedTheme = theme => {
     if (!theme || Object.keys(theme).length === 0) {
         return DEFAULT_THEME;
     }
-    const derivedTheme = {
-        tabs: {},
-        menu: {}
-    };
 
-    console.log('Building derived theme');
+    const derivedTheme = {};
     if (!theme.tabs || __isEmpty(theme.tabs)) {
         derivedTheme.tabs = DEFAULT_THEME.tabs;
     } else {
@@ -212,6 +231,13 @@ const __valOrDefault = (accessor, defaultValue) => {
         .join();
 };
 
+const __detectStickySettingPropMismatches = (id, sticky) => {
+    if (sticky === true && !__hasValue(id)) {
+        console.error('If passing the "sticky" prop, then you must also pass an "id" prop');
+        throw new Error('Sticky setting prop mismatch detected (Missing: Id)');
+    }
+};
+
 const __detectDescendantTypeMismatches = tabs => {
     const typeMismatches = __getTypeMismatches(tabs);
     if (typeMismatches.length > 0) {
@@ -236,15 +262,28 @@ const __logTypeMismatches = typeMismatches => {
     });
 };
 
-const __detectControlledUncontrolledPropMismatches = (activeKey, defaultActiveKey, onSelect) => {
+const __detectControlledUncontrolledPropMismatches = (activeKey, defaultActiveKey, onSelect, sticky) => {
     if (__hasValues(activeKey, defaultActiveKey)) {
         throw new Error(
             'Mixing controlled and uncontrolled props. Specify an "activeKey" or a "defaultActiveKey", but not both'
         );
     }
-    if (__hasValues(defaultActiveKey, onSelect)) {
+
+    if (__hasValues(onSelect, defaultActiveKey)) {
         throw new Error(
             'Mixing controlled and uncontrolled props. If specifying an "onSelect" function, use "activeKey" instead of "defaultActiveKey'
+        );
+    }
+
+    if (__hasValue(onSelect) && !__hasValue(activeKey)) {
+        throw new Error(
+            'Mixing controlled and uncontrolled props. If specifying an "onSelect" function, you must pass an "activeKey'
+        );
+    }
+
+    if (__hasValues(sticky, activeKey)) {
+        throw new Error(
+            'Mixing controlled and uncontrolled props. Cannot specify "sticky" and "activeKey". Only uncontrolled components can maintain internal stickiness.'
         );
     }
 };
@@ -275,6 +314,7 @@ Tabs.propTypes = {
     defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     stacked: PropTypes.bool,
+    sticky: PropTypes.bool,
     onSelect: PropTypes.func,
     style: PropTypes.object,
     children: PropTypes.node.isRequired
