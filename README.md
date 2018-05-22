@@ -221,7 +221,7 @@ const App = () => (
 
 ## <a name="react-tabify#color-theme">Color Theme</a>
 
-`react-tabify` leverages `<ThemeManager />` from [glamorous] to expose an optional `theme` object. The `tabs` property controls the horizontal styling, while `menu` controls the vertical. 
+`react-tabify` leverages `<ThemeManager />` from [glamorous](https://github.com/paypal/glamorous) to expose an optional `theme` object. The `tabs` property controls the horizontal styling, while `menu` controls the stacked view. Accepts any valid color (e.g. "red", "#FF0000", "hsl(0, 100%, 50%)", "rgb(255, 0, 0), etc".
 
 ```js
 const theme = {
@@ -251,4 +251,6 @@ const theme = {
   }
 };
 ```
+
+
 
