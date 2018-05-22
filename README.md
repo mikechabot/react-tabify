@@ -16,8 +16,8 @@ Dead simple tab component for ReactJS.
   - [CommonJS](#commonjs)
   - [ES6 Modules](#es6-modules)
   - [Examples](#examples)
-    - [Horizontal](#horizontal)
-    - [Vertical](#vertical)
+    - [Basic](#basic)
+    
 - [Props](#props)
 
 
@@ -28,21 +28,23 @@ Yarn or npm:
 * `$ yarn add react-tabify`
 * `$ npm install --save react-tabify`
 
-## <a name="react-tabifyy#usage">Usage</a>
+## <a name="react-tabify#usage">Usage</a>
 
-### <a name="react-tabifyy#commonjs">CommonJS</a>
+### <a name="react-tabify#commonjs">CommonJS</a>
 
     const { Tabs, Tab } = require('react-tabify');
 
-### <a name="react-tabifyy#es6-modules">ES6 Modules</a>
+### <a name="react-tabify#es6-modules">ES6 Modules</a>
 
     import { Tabs, Tab } from 'react-tabify';
     
-### <a name="react-tabifyy#examples">Examples</a>
+### <a name="react-tabify#examples">Examples</a>
 
-#### <a name="react-tabifyy#horizontal">Horizontal</a>
+### <a name="react-tabifyy#horizontal">Basic</a>
 
-This is the default layout.
+##### <a name="react-tabify#horizontal">Horizontal</a>
+
+Default layout.
 
 [![Edit ymopvryp81](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ymopvryp81)
 
@@ -60,7 +62,7 @@ This is the default layout.
       </Tabs>
     )
     
-#### <a name="react-tabifyy#vertical">Vertical</a>
+##### <a name="react-tabify#vertical">Vertical</a>
 
 Just pass the `stacked` prop to `Tabs`.
 
@@ -80,4 +82,4 @@ Just pass the `stacked` prop to `Tabs`.
       </Tabs>
     )
 
-## <a name="react-tabifyy#props">Props</a>
+## <a name="react-tabify#props">Props</a>
