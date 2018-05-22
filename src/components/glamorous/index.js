@@ -1,9 +1,11 @@
 import glamorous from 'glamorous';
 
-const PRIMARY_BLUE = '#0070d2';
+const PRIMARY_BLUE = '#3273dc';
 const PRIMARY_GRAY = '#f4f6f9';
 const SECONDARY_BLUE = '#f0f8fc';
 const BORDER = '#d8dde6';
+
+export { default as Flex } from './Flex';
 
 export const theme = {
     main: {
@@ -51,21 +53,6 @@ export const StackedUL = glamorous.ul({
         if (props.minWidth) {
             styles.push({ minWidth: props.minWidth });
         }
-        return styles;
-    }
-);
-
-export const Flex = glamorous.div(
-    {
-        display: 'flex'
-    },
-    props => {
-        let styles = [];
-        if (props.column) styles.push({ flexDirection: 'column' });
-        if (props.height) styles.push({ height: props.height });
-        if (props.width) styles.push({ width: props.width });
-        if (props.scroll) styles.push({ overflowY: 'auto' });
-        if (props.style) styles.push(props.style);
         return styles;
     }
 );
@@ -125,3 +112,8 @@ export const StackedLI = glamorous.li({
         return styles;
     }
 );
+
+export const TabDiv = glamorous.Div({
+    height: '100%',
+    width : '100%'
+});

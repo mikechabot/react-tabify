@@ -8,7 +8,7 @@ import {
     UL, StackedUL,
     Link, StackedLink,
     Flex, theme
-} from './common/index';
+} from './glamorous/index';
 import {ThemeProvider} from 'glamorous';
 
 class Tabs extends React.Component {
@@ -47,11 +47,11 @@ class Tabs extends React.Component {
 
         return (
             <ThemeProvider theme={tabsTheme}>
-                <Flex id={id} height="100%" width="100%" column={!stacked}>
-                    <div>
+                <Flex id={id} flex={1} flexShrink={0} column={!stacked} overflow="hidden">
+                    <Flex flexShrink={0} id={`${id}-tab-menu`}>
                         {this._renderTabLinks(tabs)}
-                    </div>
-                    <Flex scroll={true}>
+                    </Flex>
+                    <Flex flex={1} flexShrink={0} overflow="auto" id={`${id}-tab-content`}>
                         {this._renderTabContent(tabs)}
                     </Flex>
                 </Flex>
@@ -181,20 +181,12 @@ function __hasValues (...values) {
 }
 
 Tabs.propTypes = {
-    id                     : PropTypes.string.isRequired,
-    defaultActiveKey       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    controlsHorizontalRight: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.node
-    ]),
-    controlsHorizontalCenter: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.node
-    ]),
-    activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    stacked  : PropTypes.bool,
-    onSelect : PropTypes.func,
-    children : PropTypes.node.isRequired
+    id              : PropTypes.string.isRequired,
+    defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    activeKey       : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    stacked         : PropTypes.bool,
+    onSelect        : PropTypes.func,
+    children        : PropTypes.node.isRequired
 };
 
 export default Tabs;

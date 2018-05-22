@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex } from './common';
+import {TabDiv} from './glamorous';
 
 function Tab ({
     id,
@@ -9,14 +9,13 @@ function Tab ({
     children
 }) {
     return (
-        <Flex
+        <TabDiv
             id={id}
             style={style}
-            stacked={stacked}
             height="100%"
             width="100%">
             { children }
-        </Flex>
+        </TabDiv>
     );
 }
 
@@ -25,8 +24,7 @@ Tab.propTypes = {
     label   : PropTypes.oneOfType([PropTypes.object, PropTypes.node]),
     children: PropTypes.node,
     style   : PropTypes.object,
-    show    : PropTypes.bool,
-    stacked : PropTypes.bool,
+    hide    : PropTypes.bool,
     eventKey: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
