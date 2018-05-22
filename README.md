@@ -153,7 +153,7 @@ export default () => (
 
 ### Nested
 
-Easily nest tabs to create a section/subsection layout
+Easily nest tabs to create a section/subsection layout.
 
 ```js
 export default () => (
