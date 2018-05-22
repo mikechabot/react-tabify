@@ -137,6 +137,8 @@ export default () => (
 ```
 [![Edit p5y4mpxowq](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/p5y4mpxowq)
 
+----
+
 ### Nested
 
 Easily nest tabs to create a section/subsection layout
@@ -170,6 +172,8 @@ export default () => (
 ```
 
 [![Edit 2pvlwjzp60](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2pvlwjzp60)
+
+----
 
 ### Container Overflow
 
