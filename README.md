@@ -228,11 +228,15 @@ Use the `hide` prop to dynmically hide/show `<Tab />` components. Pass a `bool`,
 // Dummy rejection
 const __hasAccess = user => false;
 
-const App = ({user}) => (
+const App = ({ user }) => (
   <div style={styles}>
     <Tabs>
-      <Tab label="Super Admin Tab" hide>Super Admin Content</Tab>
-      <Tab label="Admin Tab" hide={() => !__hasAccess(user)}>Admin Content</Tab>
+      <Tab label="Super Admin Tab" hide>
+        Super Admin Content
+      </Tab>
+      <Tab label="Admin Tab" hide={() => !__hasAccess(user)}>
+        Admin Content
+      </Tab>
       <Tab label="User Tab">User Content</Tab>
     </Tabs>
   </div>
