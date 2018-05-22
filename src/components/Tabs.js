@@ -137,7 +137,7 @@ const __getTabs = children => {
         if (!tab) return false;
         const { hide } = tab.props;
         if (typeof hide === 'function') {
-            return hide();
+            return !hide();
         }
         return hide !== true;
     });
