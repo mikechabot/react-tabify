@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'glamorous';
 
 import TabService from '../services/tab-service';
+import LocalStorageService from '../services/local-storage-service';
 
 import { Flex, TabLI, TabLink, TabList, TabUL, MenuList, MenuUL, MenuLI, MenuLink } from './common';
-import LocalStorageService from './services/local-storage-service';
 import { __hasValue } from '../common';
 
-const DEFAULT_ID = '__react-tabify__';
+const DEFAULT_ID = '__tabify__';
 
 class Tabs extends React.Component {
     constructor(props) {
