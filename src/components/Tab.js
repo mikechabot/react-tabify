@@ -15,7 +15,7 @@ Tab.propTypes = {
     label: PropTypes.oneOfType([PropTypes.object, PropTypes.node]),
     children: PropTypes.node,
     style: PropTypes.object,
-    hide: PropTypes.bool,
+    hide: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     eventKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 

@@ -135,7 +135,11 @@ const __getTabs = children => {
     const tabs = !Array.isArray(children) ? [children] : children;
     return tabs.filter(tab => {
         if (!tab) return false;
-        return tab.props.hide !== true;
+        const { hide } = tab.props;
+        if (typeof hide === 'function') {
+            return hide();
+        }
+        return hide !== true;
     });
 };
 
