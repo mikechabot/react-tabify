@@ -321,12 +321,12 @@ const theme = {
 const App = () => (
   <Tabs theme={theme}>
     <Tab label="Tab 1">First Content</Tab>
-    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 2">Second Content</Tab>
     <Tab label="Tab 3">Third Content</Tab>
   </Tabs>
 );
 ```
 
-[![Edit 1y19m2q7mj](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/1y19m2q7mj)
+[![Edit jjw53xqn69](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/jjw53xqn69)
 
 
