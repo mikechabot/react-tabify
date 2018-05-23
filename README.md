@@ -332,6 +332,8 @@ const App = () => (
 
 [![Edit jjw53xqn69](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/jjw53xqn69)
 
+----
+
 A more complex, yet very ugly theme:
 
 ```js
