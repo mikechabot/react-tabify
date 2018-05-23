@@ -278,6 +278,8 @@ const App = ({ user }) => (
 
 > Accepts any valid color (e.g. "red", "#FF0000", "hsl(0, 100%, 50%)", "rgb(255, 0, 0)", etc).
 
+
+##### Theme object
 ```js
 const theme = {
   tabs: {
@@ -306,6 +308,7 @@ const theme = {
   }
 };
 ```
+
 Override any of the properties above: 
 
 ```js
