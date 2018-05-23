@@ -309,7 +309,9 @@ const theme = {
 };
 ```
 
-Override any of the properties above: 
+----
+
+Override any of the properties above. Here's a simple example:
 
 ```js
 const theme = {
@@ -334,7 +336,7 @@ const App = () => (
 
 ----
 
-A more complex, yet very ugly theme:
+A more complex, yet very ugly example theme:
 
 ```js
 const theme = {
