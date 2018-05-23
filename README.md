@@ -329,4 +329,53 @@ const App = () => (
 
 [![Edit jjw53xqn69](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/jjw53xqn69)
 
+A more complex, yet very ugly theme:
 
+```js
+const theme = {
+  tabs: {
+    color: "#FF000",
+    active: {
+      color: "green"
+    }
+  },
+  menu: {
+    color: "hsl(248, 39%, 39%)",
+    borderRight: "darkmagenta",
+    active: {
+      backgroundColor: "rgb(165,42,42)"
+    },
+    hover: {
+      color: "hsl(240, 100%, 50%)"
+    }
+  }
+};
+
+const App = () => (
+  <Tabs stacked theme={theme}>
+    <Tab label="Tab 1">
+      <Tabs theme={theme}>
+        <Tab label="Subtab 1.1">Tab 1 Content 1</Tab>
+        <Tab label="Subtab 1.2">Tab 1 Content 2</Tab>
+        <Tab label="Subtab 1.3">Tab 1 Content 3</Tab>
+      </Tabs>
+    </Tab>
+    <Tab label="Tab 2">
+      <Tabs theme={theme}>
+        <Tab label="Subtab 2.1">Tab 2 Content 1</Tab>
+        <Tab label="Subtab 2.2">Tab 2 Content 2</Tab>
+        <Tab label="Subtab 2.3">Tab 2 Content 3</Tab>
+      </Tabs>
+    </Tab>
+    <Tab label="Tab 3">
+      <Tabs theme={theme}>
+        <Tab label="Subtab 3.1">Tab 3 Content 1</Tab>
+        <Tab label="Subtab 3.2">Tab 3 Content 2</Tab>
+        <Tab label="Subtab 3.3">Tab 3 Content 3</Tab>
+      </Tabs>
+    </Tab>
+  </Tabs>
+);
+```
+
+[![Edit nkk5550ox4](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/nkk5550ox4)
