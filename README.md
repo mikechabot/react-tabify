@@ -40,7 +40,7 @@ import { Tab, Tabs } from 'react-tabify';
 export default () => (
   <Tabs>
     <Tab label="Tab 1">First Content</Tab>
-    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 2">Second Content</Tab>
     <Tab label="Tab 3">Third Content</Tab>
   </Tabs>
 );
@@ -94,7 +94,7 @@ If `<Tab />` components are not passed an `eventKey`, they will default to their
 export default () => (
   <Tabs defaultActiveKey={2}>
     <Tab label="Tab 1">First Content</Tab>
-    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 2">Second Content</Tab>
     <Tab label="Tab 3">Third Content</Tab>
   </Tabs>
 );
@@ -128,7 +128,7 @@ class App extends React.Component {
     return (
       <Tabs activeKey={this.state.activeKey} onSelect={this.handleTabSelect}>
         <Tab label="Tab 1">First Content</Tab>
-        <Tab label="Tab 2">Secont Content</Tab>
+        <Tab label="Tab 2">Second Content</Tab>
         <Tab label="Tab 3">Third Content</Tab>
       </Tabs>
     );
@@ -150,7 +150,7 @@ Add the `stacked` prop to render the tabs vertically.
 export default () => (
   <Tabs stacked>
     <Tab label="Tab 1">First Content</Tab>
-    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 2">Second Content</Tab>
     <Tab label="Tab 3">Third Content</Tab>
   </Tabs>
 );
@@ -169,7 +169,7 @@ If `<Tabs />` is uncontrolled, pass `sticky` to "remember" the last active `<Tab
 export default () => (
   <Tabs sticky>
     <Tab label="Tab 1">First Content</Tab>
-    <Tab label="Tab 2">Secont Content</Tab>
+    <Tab label="Tab 2">Second Content</Tab>
     <Tab label="Tab 3">Third Content</Tab>
   </Tabs>
 );
