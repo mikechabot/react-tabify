@@ -68,9 +68,7 @@ const __getExplicitFlexStyles = (props, propKeys) => {
     if (!propKeys) throw new Error('Missing required propKeys');
     if (!Array.isArray(propKeys)) throw new Error('propKeys must be an Array');
     return propKeys
-        .map(
-            prop => (props[prop] !== null && props[prop] !== undefined ? { [prop]: props[prop] } : null)
-        )
+        .map(prop => (props[prop] !== null && props[prop] !== undefined ? { [prop]: props[prop] } : null))
         .filter(rule => rule);
 };
 
@@ -197,7 +195,6 @@ export const MenuLI = glamorous.li({});
 export const MenuLink = glamorous.a(
     {
         cursor: 'pointer',
-        borderRadius: '2px',
         display: 'block',
         padding: '0.5em 0.75em'
     },

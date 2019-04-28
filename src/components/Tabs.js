@@ -125,9 +125,7 @@ class Tabs extends React.Component {
     }
 
     _getActiveKey() {
-        return __hasValue(this.props.activeKey)
-            ? this.props.activeKey
-            : this.state.uncontrolledActiveKey;
+        return __hasValue(this.props.activeKey) ? this.props.activeKey : this.state.uncontrolledActiveKey;
     }
 
     _getId() {
