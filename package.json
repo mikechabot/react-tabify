@@ -4,6 +4,7 @@
   "description": "Tabs component for ReactJS",
   "main": "index.js",
   "scripts": {
+    "prepublishOnly": "npm run build && git add . && git commit -m \"Packaging assets\" && npm version patch && git push origin",
     "build": "babel src -d lib"
   },
   "repository": {
@@ -14,7 +15,10 @@
     "tabs",
     "tab menu",
     "react-tabs",
-    "react"
+    "react",
+    "vertical tabs",
+    "stacked tabs",
+    "horizontal tabs"
   ],
   "author": "Mike Chabot",
   "license": "MIT",
